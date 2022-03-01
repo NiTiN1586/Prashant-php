@@ -1,0 +1,16 @@
+Jagaad\WitcherApi\Entity\Label:
+  label_1:
+    name: 'Label 1'
+    createdAt: <(new \DateTime('2021-10-09'))>
+    updatedAt: <(new \DateTime('2021-11-10'))>
+
+  label_2:
+    name: 'Label 2'
+    createdAt: <(new \DateTime('2021-10-09'))>
+    updatedAt: <(new \DateTime('2021-11-10'))>
+
+  label_3:
+    name: 'Label 3'
+    createdAt: <(new \DateTime('2021-10-09'))>
+    updatedAt: <(new \DateTime('2021-11-10'))>
+    deletedAt: <(new \DateTime('2021-12-03'))>

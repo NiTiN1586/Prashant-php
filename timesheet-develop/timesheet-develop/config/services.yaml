@@ -1,0 +1,200 @@
+parameters:
+
+services:
+    _instanceof:
+        Jagaad\WitcherApi\Integration\Migration\Interfaces\MigrationInterface:
+            tags: ['integration.migration']
+
+        Jagaad\WitcherApi\Integration\Migration\Interfaces\IssueMigrationStepInterface:
+            tags: ['issue_migration.step']
+
+        Jagaad\WitcherApi\Integration\Migration\ProjectMigrationStepInterface:
+            tags: ['project_migration.step']
+
+        Jagaad\WitcherApi\Integration\Migration\UserMigrationStepInterface:
+            tags: ['user_migration.step']
+
+        Jagaad\WitcherApi\HistoryTransformer\TrackableFields\TrackableFieldsInterface:
+            tags: ['history.trackable_fields']
+
+        Jagaad\WitcherApi\EventSubscriber\EventProcessor\EventProcessorInterface:
+            tags: ['event.processor']
+
+        Jagaad\WitcherApi\Integration\Migration\Interfaces\HistoryMigrationStepInterface:
+            tags: ['history_migration.step']
+
+        Jagaad\WitcherApi\UserCreator\Questionnaire\AbstractUserQuestionnaire:
+            tags: [ 'questionnaire.user' ]
+
+        Jagaad\WitcherApi\Security\AccessChecker\AccessCheckerInterface:
+            tags: ['api.security.access_checker']
+
+        Jagaad\WitcherApi\Security\Extension\CollectionExtensionQueryDecoratorInterface:
+            tags: ['api.security.collection_decorator']
+
+        Jagaad\WitcherApi\Security\ContextBuilder\SerializationGroupAssetInterface:
+            tags: ['api.security.serialization_group_asset']
+
+    _defaults:
+        autowire: true
+        autoconfigure: true
+        bind:
+            $elasticPersister: '@fos_elastica.object_persister.history'
+            $sncRedisClient: '@snc_redis.cache'
+            $trackerToken: '%env(TRACKER_TOKEN)%'
+            $gitManagementToken: '%env(GIT_MANAGEMENT_WEBHOOK_TOKEN)%'
+
+    Jagaad\WitcherApi\:
+        resource: '../src/'
+        exclude:
+            - '../src/DependencyInjection/'
+            - '../src/Entity/'
+            - '../src/Kernel.php'
+            - '../src/Tests/'
+
+    Jagaad\WitcherApi\Controller\:
+        resource: '../src/Controller/'
+        tags: ['controller.service_arguments']
+
+    Jagaad\WitcherApi\Swagger\Decorator\SwaggerDecorator:
+        decorates: 'api_platform.swagger.normalizer.documentation'
+        arguments: [ '@Jagaad\WitcherApi\Swagger\Decorator\SwaggerDecorator.inner' ]
+        autoconfigure: false
+
+    Jagaad\WitcherApi\Security\WitcherAuthenticatedUserProcessor:
+        decorates: jagaad.user_processor
+
+    Jagaad\WitcherApi\EventSubscriber\User\UserEventSubscriber:
+        tags:
+            - { name: 'doctrine.event_subscriber', connection: 'default' }
+
+    Psr\Log\LoggerInterface $consoleNotifier: '@logger'
+
+    JsonMapper:
+        class: JsonMapper
+        factory: '@Jagaad\WitcherApi\Integration\Application\Factory\JsonMapperFactory'
+
+    Jagaad\WitcherApi\Integration\Application\IssueTracker\Jira\Migration\IssueMigrationStep\TaskEntityPopulationStep:
+        arguments:
+            $issueTrackerHost: '%env(JIRA_HOST)%'
+
+    Jagaad\WitcherApi\Integration\Application\IssueTracker\Jira\Migration\ProjectMigrationStep\ProjectEntityPopulationStep:
+        arguments:
+            $issueTrackerHost: '%env(JIRA_HOST)%'
+
+    Jagaad\WitcherApi\Integration\Application\IssueTracker\Jira\Migration\Handler\ProjectMigrationHandler:
+        bind:
+            $projectMigrationSteps: !tagged_iterator { tag: project_migration.step, default_priority_method: getPriority }
+
+    Jagaad\WitcherApi\Integration\Application\IssueTracker\Jira\Migration\Handler\UserMigrationHandler:
+        bind:
+            $userMigrationSteps: !tagged_iterator { tag: user_migration.step, default_priority_method: getPriority }
+
+    Jagaad\WitcherApi\Integration\Application\IssueTracker\Jira\Migration\Handler\IssueMigrationHandler:
+        bind:
+            $issueMigrationSteps: !tagged_iterator { tag: issue_migration.step, default_priority_method: getPriority }
+
+    Jagaad\WitcherApi\Security\AccessCheckerContext:
+        bind:
+            $accessCheckers: !tagged_iterator { tag: api.security.access_checker }
+
+    Jagaad\WitcherApi\Security\CollectionExtensionDecorateContext:
+        bind:
+            $queryDecorators: !tagged_iterator { tag: api.security.collection_decorator }
+
+    Jagaad\WitcherApi\Integration\Application\IssueTracker\Jira\Migration\Handler\HistoryMigrationHandler:
+        - !tagged_iterator { tag: history_migration.step }
+
+    Gedmo\SoftDeleteable\SoftDeleteableListener:
+        tags:
+            - { name: doctrine.event_subscriber, connection: default }
+        calls:
+            - [ setAnnotationReader, [ '@annotation_reader' ] ]
+
+    Jagaad\WitcherApi\UserCreator\QuestionnaireContext:
+        - !tagged_iterator { tag: questionnaire.user, default_priority_method: getPriority }
+
+    Jagaad\WitcherApi\Integration\Migration\MigrationRegistry:
+        - !tagged_iterator { tag: integration.migration, default_priority_method: getPriority }
+
+    Jagaad\WitcherApi\EventSubscriber\EventProcessor\EventProcessorContext:
+        bind:
+            $eventProcessors: !tagged_iterator { tag: event.processor }
+
+    Jagaad\WitcherApi\Security\ContextBuilder\ContextBuilder:
+        decorates: 'api_platform.serializer.context_builder'
+        autoconfigure: false
+        bind:
+            $decorated: '@Jagaad\WitcherApi\Security\ContextBuilder\ContextBuilder.inner'
+            $serializationGroupAssets: !tagged_iterator { tag: api.security.serialization_group_asset }
+
+    Jagaad\WitcherApi\Security\ContextBuilder\GraphQLContextBuilder:
+        decorates: 'api_platform.graphql.serializer.context_builder'
+        autoconfigure: false
+        bind:
+            $decorated: '@Jagaad\WitcherApi\Security\ContextBuilder\GraphQLContextBuilder.inner'
+            $serializationGroupAssets: !tagged_iterator { tag: api.security.serialization_group_asset }
+
+    JiraRestApi\JiraClient:
+        class: JiraRestApi\JiraClient
+
+
+    Jagaad\WitcherApi\Integration\Application\Transformer\RequestTransformerInterface $projectRequestTransformer: '@Jagaad\WitcherApi\Integration\Application\Transformer\ProjectRequestTransformer'
+
+    Jagaad\WitcherApi\Integration\Application\IssueTracker\Jira\Repository\IssueReadApiRepository:
+        bind:
+            $issueRequestTransformer: '@Jagaad\WitcherApi\Integration\Application\Transformer\IssueRequestTransformer'
+            $historyRequestTransformer: '@Jagaad\WitcherApi\Integration\Application\Transformer\ProjectIssueHistoryRequestTransformer'
+
+    slack_handler_witcher_exceptions:
+        class: Monolog\Handler\SlackWebhookHandler
+        arguments:
+            $webhookUrl: '%env(SLACK_WITCHER_EXCEPTIONS_WEBHOOK_URL)%'
+            $includeContextAndExtra: true
+
+    Jagaad\WitcherApi\MessageHandler\SlackNotificationHandler:
+        arguments:
+            $slackWebhookHandler: '@slack_handler_witcher_exceptions'
+
+    Jagaad\WitcherApi\EventSubscriber\Slack\SlackNotificationEventSubscriber:
+        arguments:
+            $slackNotification: '%env(bool:SLACK_NOTIFICATION_ENABLE)%'
+            $slackChannel: '%env(SLACK_NOTIFICATION_CHANNEL)%'
+            $eventProcessor: '@Jagaad\WitcherApi\Integration\Application\Processor\WebhookEventProcessor'
+
+    Symfony\Component\Serializer\Normalizer\ContextAwareDenormalizerInterface $responseDenormalizer: '@serializer'
+
+    Jagaad\WitcherApi\Integration\Application\GitManagement\GitLab\Repository\EventReadApiRepository:
+        bind:
+            $transformer: '@Jagaad\WitcherApi\Integration\Application\Transformer\GitEventRequestTransformer'
+            $denormalizer: '@Jagaad\WitcherApi\Integration\Application\GitManagement\GitLab\Serializer\Normalizer\GitlabEventDenormalizer'
+            $converter: '@Jagaad\WitcherApi\Integration\Application\GitManagement\GitLab\Converter\UserEventResponseConverter'
+
+    Jagaad\WitcherApi\Integration\Application\GitManagement\GitLab\Repository\ProjectGitCommitRepository:
+        bind:
+            $transformer: '@Jagaad\WitcherApi\Integration\Application\Transformer\GitCommitRequestTransformer'
+            $converter: '@Jagaad\WitcherApi\Integration\Application\GitManagement\GitLab\Converter\GitCommitResponseConverter'
+
+    Jagaad\WitcherApi\DataProvider\GitlabProjectDataProvider:
+        bind:
+            $converter: '@Jagaad\WitcherApi\Integration\Application\GitManagement\GitLab\Converter\GitlabProjectResponseConverter'
+
+    Jagaad\WitcherApi\ElasticSearch\Integration\IssueTracker\Jira\IssueChangelogDataProvider:
+        public: true
+        tags:
+            - { name: fos_elastica.pager_provider, index: history, type: history }
+
+    Jagaad\WitcherApi\HistoryTransformer\HistoryChangelogTransformer:
+        bind:
+            $trackableFields: !tagged_iterator { tag: history.trackable_fields }
+
+
+    Jagaad\WitcherApi\Security\DataProvider\CollectionOperationDataProvider:
+        bind:
+            $collectionDataProvider: '@api_platform.doctrine.orm.default.collection_data_provider'
+
+    Jagaad\WitcherApi\Security\GraphQLWriteStage:
+        decorates: api_platform.graphql.resolver.stage.write
+
+    Jagaad\WitcherApi\Security\GraphQLReadStage:
+        decorates: api_platform.graphql.resolver.stage.read

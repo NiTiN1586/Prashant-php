@@ -1,0 +1,23 @@
+Jagaad\WitcherApi\Entity\Activity:
+    activity_1:
+        createdAt: <(new \DateTime('2021-10-03'))>
+        updatedAt: <(new \DateTime('2021-10-03'))>
+        activityAt: <(new \DateTimeImmutable('2021-10-03'))>
+        createdBy: '@witcher_user_4'
+        estimationTime: 2
+        estimationSp: 1
+        task: '@task_1'
+        comment: 'Activity added by developer'
+        activityType: '@activity_type_1'
+        technology: '@technology_1'
+    activity_2:
+        createdAt: <(new \DateTime('2021-10-03'))>
+        updatedAt: <(new \DateTime('2021-10-03'))>
+        activityAt: <(new \DateTimeImmutable('2021-10-03'))>
+        createdBy: '@witcher_user_2'
+        estimationTime: 2
+        estimationSp: 1
+        task: '@task_1'
+        comment: 'Activity added by developer'
+        activityType: '@activity_type_1'
+        technology: '@technology_2'

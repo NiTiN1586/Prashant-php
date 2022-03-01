@@ -1,0 +1,106 @@
+version: '3.6'
+services:
+  php:
+    container_name: jagaad-witcher-php
+    build:
+      context: ./docker/php-fpm
+    volumes:
+      - '.:/data/app'
+      - './docker/php-fpm/php.ini:/usr/local/etc/php/php.ini'
+    depends_on:
+      - mysql
+      - rabbitmq
+      - elasticsearch
+    networks:
+      witcher_internal:
+        aliases:
+          - witcher_internal
+
+  elasticsearch:
+    container_name: jagaad-witcher-elastic
+    image: elasticsearch:7.16.2
+    environment:
+      - "ES_JAVA_OPTS=-Xms512m -Xms512m"
+      - discovery.type=single-node
+    ports:
+      - '9200:9200'
+    networks:
+      witcher_internal:
+        aliases:
+          - witcher_internal
+    healthcheck:
+      test: [ "CMD-SHELL", "curl --silent --fail localhost:9200/_cluster/health || exit 1" ]
+      interval: 30s
+      timeout: 30s
+      retries: 3
+    tty : true
+
+  web:
+    container_name: jagaad-witcher-web
+    image: 'nginx:latest'
+    ports:
+      - '8899:8899'
+    volumes:
+      - '.:/data/app'
+      - './docker/nginx/jagaad-witcher.conf:/etc/nginx/conf.d/default.conf'
+    depends_on:
+      - php
+    env_file:
+      - .env.local
+    networks:
+      witcher_internal:
+        aliases:
+          - witcher_internal
+  mysql:
+    container_name: jagaad-witcher-mysql
+    image: 'mysql:8'
+    command: '--sql_mode=""'
+    env_file:
+      - .env.local
+    ports:
+      - '33061:3306'
+    volumes:
+      - 'mysql:/var/lib/mysql'
+    networks:
+      witcher_internal:
+        aliases:
+          - witcher_internal
+
+  rabbitmq:
+    container_name: jagaad-witcher-rabbitmq
+    image: 'rabbitmq:3.9-management-alpine'
+    command: rabbitmq-server
+    restart: always
+    expose:
+      - 5672
+    ports:
+      - '15672:15672'
+    healthcheck:
+      test: [ "CMD", "nc", "-z", "localhost", "5672" ]
+      interval: 1m
+      timeout: 15s
+      retries: 3
+    env_file:
+      - .env.local
+    networks:
+      witcher_internal:
+        aliases:
+          - witcher_internal
+
+  redis:
+    container_name: jagaad-witcher-redis
+    image: "redis:alpine"
+    tty: true
+    ports:
+      - "6379:6379"
+    networks:
+      witcher_internal:
+        aliases:
+          - witcher_internal
+
+volumes:
+  mysql: null
+
+networks:
+  witcher_internal:
+    name: witcher_internal

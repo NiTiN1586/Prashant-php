@@ -1,0 +1,11 @@
+query Projects {
+	witcherProjects {
+		edges {
+			node {
+				id
+				name
+				description
+			}
+		}
+	}
+}

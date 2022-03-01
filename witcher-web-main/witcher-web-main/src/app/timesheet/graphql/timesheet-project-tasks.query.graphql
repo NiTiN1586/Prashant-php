@@ -1,0 +1,18 @@
+query TimesheetProjectTasks($perPage: Int, $after: String!, $slug: String) {
+	tasks(witcherProject_slug: $slug, first: $perPage, after: $after) {
+		totalCount
+		edges {
+			node {
+				id
+				slug
+				summary
+				assignee {
+					id
+				}
+				activities(first: 0) {
+					totalCount
+				}
+			}
+		}
+	}
+}

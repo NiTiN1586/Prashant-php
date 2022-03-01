@@ -1,0 +1,43 @@
+framework:
+    messenger:
+        # Uncomment this (and the failed transport below) to send failed messages to this transport for later handling.
+        # failure_transport: failed
+        serializer:
+            default_serializer: messenger.transport.symfony_serializer
+            symfony_serializer:
+                format: json
+                context: { }
+
+        failure_transport: failed
+
+        transports:
+            # https://symfony.com/doc/current/messenger.html#transport-configuration
+            async:
+                dsn: '%env(MESSENGER_TRANSPORT_DSN)%'
+                options:
+                    auto_setup: false
+                    exchange:
+                        name: issue_tracker
+                        type: direct
+
+                    queues:
+                        jira.issue_tracker.events:
+                            binding_keys: [ !php/const Jagaad\WitcherApi\Integration\Application\IssueTracker\MessageHandler\JiraTimeTrackerEventHandler::JIRA_ISSUE_TRACKER_EVENT ]
+
+                        gitlab.events:
+                            binding_keys: [ !php/const Jagaad\WitcherApi\Integration\Application\GitManagement\MessageHandler\GitlabEventHandler::GITLAB_EVENT ]
+
+                        slack.notification.events:
+                            binding_keys: [ !php/const Jagaad\WitcherApi\MessageHandler\SlackNotificationHandler::SLACK_NOTIFICATION_EVENT ]
+
+                retry_strategy:
+                    max_retries: 5
+                    delay: 1000
+                    multiplier: 2
+                    max_delay: 0
+
+            failed: 'doctrine://default?queue_name=failed'
+        routing:
+            Jagaad\WitcherApi\Integration\Domain\IssueTracker\Message\JiraTimeTrackerEvent: async
+            Jagaad\WitcherApi\Integration\Domain\GitManagement\Message\GitEvent: async
+            Jagaad\WitcherApi\Message\SlackNotificationEvent: async

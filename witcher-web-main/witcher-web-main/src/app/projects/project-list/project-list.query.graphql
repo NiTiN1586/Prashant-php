@@ -1,0 +1,20 @@
+query ProjectList($perPage: Int, $after: String!) {
+	witcherProjects(first: $perPage, after: $after) {
+		totalCount
+		edges {
+			node {
+				id
+				description
+				name
+				client {
+					id
+				}
+				projectType {
+					businessBranch {
+						friendlyName
+					}
+				}
+			}
+		}
+	}
+}

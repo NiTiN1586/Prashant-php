@@ -1,0 +1,37 @@
+parameters:
+  jagaad.user_provider_bundle.default_auth_callback_route: 'jagaad.user_provider.authentication.callback'
+  jagaad.user_provider_bundle.auth_callback_route: ~
+  jagaad.user_provider_bundle.post_login_redirect_route: ~
+  jagaad.user_provider_bundle.login_route: ~
+  jagaad.user_provider_bundle.user_api_base_url: ~
+
+services:
+  _defaults:
+    autowire: true
+    autoconfigure: true
+    bind:
+      $googleAuthenticationLoginRoute: '%jagaad.user_provider_bundle.auth_callback_route%'
+      $postLoginRedirectRoute: '%jagaad.user_provider_bundle.post_login_redirect_route%'
+      $loginRoute: '%jagaad.user_provider_bundle.login_route%'
+      $userApiBaseUrl: '%jagaad.user_provider_bundle.user_api_base_url%'
+      $clientJagaadUserApiToken: '%jagaad.user_provider_bundle.client_jagaad_user_api_token%'
+
+  Jagaad\UserProviderBundle\:
+    resource: '../../'
+    exclude:
+      - '../src/DependencyInjection/'
+
+  Jagaad\UserProviderBundle\Controller\:
+    resource: '../../Controller/'
+    tags: [ 'controller.service_arguments' ]
+
+  jagaad.user_provider.authenticator:
+    alias: Jagaad\UserProviderBundle\Security\UserProviderAuthenticator
+
+  jagaad.user_provider.provider:
+    alias: Jagaad\UserProviderBundle\Security\UserProvider
+
+  jagaad.user_processor:
+    alias: Jagaad\UserProviderBundle\Security\AuthenticatedUserProcessor
+
+  Jagaad\UserProviderBundle\Security\AuthenticatedUserProcessorInterface: '@jagaad.user_processor'

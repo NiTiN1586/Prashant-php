@@ -1,0 +1,16 @@
+<?php
+
+declare(strict_types=1);
+
+namespace Jagaad\WitcherApi\Security\Enum\Permission;
+
+enum Project: string
+{
+    case VIEW_ASSIGNED_PROJECTS = 'VIEW_ASSIGNED_PROJECTS';
+    case VIEW_ALL_PROJECTS = 'VIEW_ALL_PROJECTS';
+    case CREATE_PROJECTS = 'CREATE_PROJECTS';
+    case UPDATE_ASSIGNED_PROJECTS = 'UPDATE_ASSIGNED_PROJECTS';
+    case UPDATE_ALL_PROJECTS = 'UPDATE_ALL_PROJECTS';
+    case DELETE_ASSIGNED_PROJECTS = 'DELETE_ASSIGNED_PROJECTS';
+    case DELETE_ALL_PROJECTS = 'DELETE_ALL_PROJECTS';
+}

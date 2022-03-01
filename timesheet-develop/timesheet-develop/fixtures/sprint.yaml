@@ -1,0 +1,4 @@
+Jagaad\WitcherApi\Entity\Sprint:
+  sprint_1:
+    name: 'Test'
+    witcherProject: '@witcher_project_1'

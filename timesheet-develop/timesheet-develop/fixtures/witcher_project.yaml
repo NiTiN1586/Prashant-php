@@ -1,0 +1,56 @@
+Jagaad\WitcherApi\Entity\WitcherProject:
+    witcher_project_1:
+        name: 'test1'
+        slug: 'BUG'
+        externalKey: 'BUG'
+        description: 'test1 desc'
+        isBillable: true
+        externalTrackerLink: 'https://test.ltd/BUG'
+        createdBy: '@witcher_user_1'
+        witcherProjectTrackerTaskTypes: ['@witcher_project_tracker_task_type_1']
+        createdAt: <(new \DateTime('2021-10-03'))>
+
+    witcher_project_2:
+        name: 'test2'
+        slug: 'FEATURE'
+        externalKey: 'FEATURE'
+        description: 'test2 desc'
+        isBillable: true
+        externalTrackerLink: 'https://test.ltd/FEATURE'
+        createdBy: '@witcher_user_1'
+        witcherProjectTrackerTaskTypes: ['@witcher_project_tracker_task_type_2']
+        createdAt: <(new \DateTime('2021-10-03'))>
+
+    witcher_project_3:
+        name: 'test3'
+        slug: 'FIXING'
+        externalKey: 'FIXING'
+        description: 'test3 desc'
+        externalTrackerLink: 'https://test.ltd/FIXING'
+        createdBy: '@witcher_user_2'
+        witcherProjectTrackerTaskTypes: [ '@witcher_project_tracker_task_type_3' ]
+        isBillable: true
+        deletedAt: <(new \DateTime('2021-11-18'))>
+
+    witcher_project_4:
+        name: 'test4'
+        slug: 'TESTING'
+        externalKey: 'TESTING'
+        description: 'test4 desc'
+        createdBy: '@witcher_user_3'
+        externalTrackerLink: 'https://test.ltd/TESTING'
+        witcherProjectTrackerTaskTypes: ['@witcher_project_tracker_task_type_4']
+        createdAt: <(new \DateTime('2021-10-03'))>
+        isBillable: true
+        deletedAt: <(new \DateTime('2021-11-18'))>
+
+    witcher_project_5:
+        name: 'test5'
+        slug: 'TASK'
+        externalKey: 'TASK'
+        description: 'test5 desc'
+        createdBy: '@witcher_user_4'
+        externalTrackerLink: 'https://test.ltd/TASK'
+        witcherProjectTrackerTaskTypes: ['@witcher_project_tracker_task_type_5']
+        createdAt: <(new \DateTime('2021-10-03'))>
+        isBillable: true

@@ -1,0 +1,58 @@
+paths:
+  /api/auth/google/auth-url:
+    get:
+      tags:
+        - Authentication
+      operationId: getGoogleAuthUrl
+      name: Get authentication url
+      summary: Get Google authentication link to authenticate the user
+      produces:
+        - application\json
+      parameters:
+        - name: callbackUrl
+          in: query
+          required: true
+          description: A URL for Google to pass authentication results to
+          schema:
+            type: string
+            example: http://service.jagaad/google-auth-callback
+      responses:
+        200:
+          description: Google authentication URL returned
+        500:
+          description: Failed generating Google authentication URL
+
+  /api/auth/google/authenticate-user:
+    post:
+      tags:
+        - Authentication
+      operationId: authenticateGoogleUser
+      name: Authenticate Google user
+      summary: Authenticate Google user by google authentication code
+      produces:
+        - application\json
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                googleAuthenticationCode:
+                  type: string
+                  description: Google authentication code
+                redirectUrl:
+                  type: string
+                  description: Callback redirect url (should match the one used to generate authentication url)
+              required:
+                - googleAuthenticationCode
+                - redirectUrl
+      responses:
+        200:
+          description: Authentication completed
+        400:
+          description: Google authentication code is not provided
+        403:
+          description: Google authentication code is invalid or access is denied for the given Google user
+        500:
+          description: Authentication failed

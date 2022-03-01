@@ -1,0 +1,28 @@
+Jagaad\WitcherApi\Entity\PermissionGroup:
+  permission_group_1:
+    handle: 'SYSTEM'
+    name: 'System'
+    description: 'System permission group'
+    createdAt: <(new \DateTime('2021-10-09'))>
+    updatedAt: <(new \DateTime('2021-11-10'))>
+
+  permission_group_2:
+    handle: 'TASKS'
+    name: 'Tasks'
+    description: 'Task-related permission group'
+    createdAt: <(new \DateTime('2021-10-09'))>
+    updatedAt: <(new \DateTime('2021-11-10'))>
+
+  permission_group_3:
+    handle: 'PROJECTS'
+    name: 'Projects'
+    description: 'Project-related permission group'
+    createdAt: <(new \DateTime('2021-10-09'))>
+    updatedAt: <(new \DateTime('2021-11-10'))>
+
+  permission_group_4:
+    handle: 'ACTIVITIES'
+    name: 'Activities'
+    description: 'Activity-related permission group'
+    createdAt: <(new \DateTime('2021-10-09'))>
+    updatedAt: <(new \DateTime('2021-11-10'))>

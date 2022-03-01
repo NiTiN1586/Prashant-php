@@ -1,0 +1,3799 @@
+type Activity implements Node {
+	id: ID!
+	_id: Int!
+	estimationTime: Int!
+	estimationSp: Int!
+	task: Task!
+	comment: String
+	activityType: ActivityType!
+	activityAt: String!
+	technology: Technology
+	source: String
+	sourceHash: String
+	createdBy: WitcherUser!
+	updatedBy: WitcherUser
+}
+
+"""
+Connection for Activity.
+"""
+type ActivityConnection {
+	edges: [ActivityEdge]
+	pageInfo: ActivityPageInfo!
+	totalCount: Int!
+}
+
+"""
+Edge of Activity.
+"""
+type ActivityEdge {
+	node: Activity
+	cursor: String!
+}
+
+input ActivityFilter_activityAt {
+	before: String
+	strictly_before: String
+	after: String
+	strictly_after: String
+}
+
+input ActivityFilter_order {
+	activityAt: String
+}
+
+"""
+Information about the current page.
+"""
+type ActivityPageInfo {
+	endCursor: String
+	startCursor: String
+	hasNextPage: Boolean!
+	hasPreviousPage: Boolean!
+}
+
+type ActivityType implements Node {
+	id: ID!
+	_id: Int!
+	friendlyName: String!
+	handle: String!
+	displayOrder: Int
+}
+
+"""
+Connection for ActivityType.
+"""
+type ActivityTypeConnection {
+	edges: [ActivityTypeEdge]
+	pageInfo: ActivityTypePageInfo!
+	totalCount: Int!
+}
+
+"""
+Edge of ActivityType.
+"""
+type ActivityTypeEdge {
+	node: ActivityType
+	cursor: String!
+}
+
+"""
+Information about the current page.
+"""
+type ActivityTypePageInfo {
+	endCursor: String
+	startCursor: String
+	hasNextPage: Boolean!
+	hasPreviousPage: Boolean!
+}
+
+type BusinessBranch implements Node {
+	id: ID!
+	_id: Int!
+	friendlyName: String!
+	handle: String!
+	displayOrder: Int
+}
+
+"""
+Connection for BusinessBranch.
+"""
+type BusinessBranchConnection {
+	edges: [BusinessBranchEdge]
+	pageInfo: BusinessBranchPageInfo!
+	totalCount: Int!
+}
+
+"""
+Edge of BusinessBranch.
+"""
+type BusinessBranchEdge {
+	node: BusinessBranch
+	cursor: String!
+}
+
+"""
+Information about the current page.
+"""
+type BusinessBranchPageInfo {
+	endCursor: String
+	startCursor: String
+	hasNextPage: Boolean!
+	hasPreviousPage: Boolean!
+}
+
+type Changelog implements Node {
+	id: ID!
+	_id: String!
+	field: String!
+	from: String
+	to: String
+}
+
+type Client implements Node {
+	id: ID!
+	name: String!
+	country: Country
+	industry: Industry
+	currency: Currency
+}
+
+"""
+Connection for Client.
+"""
+type ClientConnection {
+	edges: [ClientEdge]
+	pageInfo: ClientPageInfo!
+	totalCount: Int!
+}
+
+"""
+Edge of Client.
+"""
+type ClientEdge {
+	node: Client
+	cursor: String!
+}
+
+"""
+Information about the current page.
+"""
+type ClientPageInfo {
+	endCursor: String
+	startCursor: String
+	hasNextPage: Boolean!
+	hasPreviousPage: Boolean!
+}
+
+type Comment implements Node {
+	id: ID!
+	_id: Int!
+	task: Task!
+	comment: String!
+	createdAt: String!
+	createdBy: WitcherUser!
+	updatedBy: WitcherUser
+}
+
+type Commit implements Node {
+	id: ID!
+	_id: String!
+	shortId: String!
+	title: String!
+	message: String!
+	createdAt: String!
+	committedAt: String!
+	url: String!
+}
+
+"""
+Connection for Commit.
+"""
+type CommitConnection {
+	edges: [CommitEdge]
+	pageInfo: CommitPageInfo!
+	totalCount: Int!
+}
+
+"""
+Edge of Commit.
+"""
+type CommitEdge {
+	node: Commit
+	cursor: String!
+}
+
+"""
+Information about the current page.
+"""
+type CommitPageInfo {
+	endCursor: String
+	startCursor: String
+	hasNextPage: Boolean!
+	hasPreviousPage: Boolean!
+}
+
+type CompanyPosition implements Node {
+	id: ID!
+	_id: Int!
+	name: String!
+	handle: String!
+}
+
+"""
+Connection for CompanyPosition.
+"""
+type CompanyPositionConnection {
+	edges: [CompanyPositionEdge]
+	pageInfo: CompanyPositionPageInfo!
+	totalCount: Int!
+}
+
+"""
+Edge of CompanyPosition.
+"""
+type CompanyPositionEdge {
+	node: CompanyPosition
+	cursor: String!
+}
+
+"""
+Information about the current page.
+"""
+type CompanyPositionPageInfo {
+	endCursor: String
+	startCursor: String
+	hasNextPage: Boolean!
+	hasPreviousPage: Boolean!
+}
+
+type Country implements Node {
+	id: ID!
+	clients(
+		"""
+		Returns the first n elements from the list.
+		"""
+		first: Int
+
+		"""
+		Returns the last n elements from the list.
+		"""
+		last: Int
+
+		"""
+		Returns the elements in the list that come before the specified cursor.
+		"""
+		before: String
+
+		"""
+		Returns the elements in the list that come after the specified cursor.
+		"""
+		after: String
+	): ClientConnection
+	_id: Int!
+	friendlyName: String!
+	handle: String!
+	displayOrder: Int
+	createdAt: String!
+	updatedAt: String!
+	deletedAt: String
+
+	"""
+	Check if the entity has been soft deleted.
+	"""
+	deleted: Boolean!
+}
+
+"""
+Connection for Country.
+"""
+type CountryConnection {
+	edges: [CountryEdge]
+	pageInfo: CountryPageInfo!
+	totalCount: Int!
+}
+
+"""
+Edge of Country.
+"""
+type CountryEdge {
+	node: Country
+	cursor: String!
+}
+
+"""
+Information about the current page.
+"""
+type CountryPageInfo {
+	endCursor: String
+	startCursor: String
+	hasNextPage: Boolean!
+	hasPreviousPage: Boolean!
+}
+
+"""
+TODO: moneyphp/money bundle should be used instead. Will be changed in related tickets
+"""
+type Currency implements Node {
+	id: ID!
+	clients(
+		"""
+		Returns the first n elements from the list.
+		"""
+		first: Int
+
+		"""
+		Returns the last n elements from the list.
+		"""
+		last: Int
+
+		"""
+		Returns the elements in the list that come before the specified cursor.
+		"""
+		before: String
+
+		"""
+		Returns the elements in the list that come after the specified cursor.
+		"""
+		after: String
+	): ClientConnection
+	_id: Int!
+	friendlyName: String!
+	handle: String!
+	displayOrder: Int
+	createdAt: String!
+	updatedAt: String!
+	deletedAt: String
+
+	"""
+	Check if the entity has been soft deleted.
+	"""
+	deleted: Boolean!
+}
+
+"""
+Connection for Currency.
+"""
+type CurrencyConnection {
+	edges: [CurrencyEdge]
+	pageInfo: CurrencyPageInfo!
+	totalCount: Int!
+}
+
+"""
+Edge of Currency.
+"""
+type CurrencyEdge {
+	node: Currency
+	cursor: String!
+}
+
+"""
+Information about the current page.
+"""
+type CurrencyPageInfo {
+	endCursor: String
+	startCursor: String
+	hasNextPage: Boolean!
+	hasPreviousPage: Boolean!
+}
+
+type Department implements Node {
+	id: ID!
+	_id: Int!
+	name: String!
+	handle: String!
+}
+
+"""
+Connection for Department.
+"""
+type DepartmentConnection {
+	edges: [DepartmentEdge]
+	pageInfo: DepartmentPageInfo!
+	totalCount: Int!
+}
+
+"""
+Edge of Department.
+"""
+type DepartmentEdge {
+	node: Department
+	cursor: String!
+}
+
+"""
+Information about the current page.
+"""
+type DepartmentPageInfo {
+	endCursor: String
+	startCursor: String
+	hasNextPage: Boolean!
+	hasPreviousPage: Boolean!
+}
+
+type EstimationType implements Node {
+	id: ID!
+	_id: Int!
+	friendlyName: String!
+	handle: String!
+	displayOrder: Int
+}
+
+"""
+Connection for EstimationType.
+"""
+type EstimationTypeConnection {
+	edges: [EstimationTypeEdge]
+	pageInfo: EstimationTypePageInfo!
+	totalCount: Int!
+}
+
+"""
+Edge of EstimationType.
+"""
+type EstimationTypeEdge {
+	node: EstimationType
+	cursor: String!
+}
+
+"""
+Information about the current page.
+"""
+type EstimationTypePageInfo {
+	endCursor: String
+	startCursor: String
+	hasNextPage: Boolean!
+	hasPreviousPage: Boolean!
+}
+
+type GitEvent implements Node {
+	id: ID!
+	_id: Int!
+	action: String!
+	title: String
+	targetType: String
+	author: WitcherUser
+	createdAt: String!
+	content: String
+	projectId: Int!
+}
+
+"""
+Connection for GitEvent.
+"""
+type GitEventConnection {
+	edges: [GitEventEdge]
+	pageInfo: GitEventPageInfo!
+	totalCount: Int!
+}
+
+"""
+Edge of GitEvent.
+"""
+type GitEventEdge {
+	node: GitEvent
+	cursor: String!
+}
+
+"""
+Information about the current page.
+"""
+type GitEventPageInfo {
+	endCursor: String
+	startCursor: String
+	hasNextPage: Boolean!
+	hasPreviousPage: Boolean!
+}
+
+type GitProject implements Node {
+	id: ID!
+	_id: Int!
+	witcherProject: WitcherProject!
+	gitLabLink: String!
+	gitLabProjectId: String!
+	createdBy: WitcherUser!
+	updatedBy: WitcherUser
+}
+
+"""
+Connection for GitProject.
+"""
+type GitProjectConnection {
+	edges: [GitProjectEdge]
+	pageInfo: GitProjectPageInfo!
+	totalCount: Int!
+}
+
+"""
+Edge of GitProject.
+"""
+type GitProjectEdge {
+	node: GitProject
+	cursor: String!
+}
+
+"""
+Information about the current page.
+"""
+type GitProjectPageInfo {
+	endCursor: String
+	startCursor: String
+	hasNextPage: Boolean!
+	hasPreviousPage: Boolean!
+}
+
+type GitlabProject implements Node {
+	id: ID!
+	_id: Int!
+	description: String
+	name: String!
+	url: String!
+}
+
+"""
+Connection for GitlabProject.
+"""
+type GitlabProjectConnection {
+	edges: [GitlabProjectEdge]
+	pageInfo: GitlabProjectPageInfo!
+	totalCount: Int!
+}
+
+"""
+Edge of GitlabProject.
+"""
+type GitlabProjectEdge {
+	node: GitlabProject
+	cursor: String!
+}
+
+"""
+Information about the current page.
+"""
+type GitlabProjectPageInfo {
+	endCursor: String
+	startCursor: String
+	hasNextPage: Boolean!
+	hasPreviousPage: Boolean!
+}
+
+type History implements Node {
+	id: ID!
+	_id: String!
+	taskId: Int!
+	slug: String!
+	trackerEventId: Int
+	internalEventId: Int
+	createdAt: String!
+	creatorId: Int!
+	changelog: [Changelog]
+	entityType: String!
+}
+
+"""
+Connection for History.
+"""
+type HistoryConnection {
+	edges: [HistoryEdge]
+	pageInfo: HistoryPageInfo!
+	totalCount: Int!
+}
+
+"""
+Edge of History.
+"""
+type HistoryEdge {
+	node: History
+	cursor: String!
+}
+
+"""
+Information about the current page.
+"""
+type HistoryPageInfo {
+	endCursor: String
+	startCursor: String
+	hasNextPage: Boolean!
+	hasPreviousPage: Boolean!
+}
+
+type Industry implements Node {
+	id: ID!
+	clients(
+		"""
+		Returns the first n elements from the list.
+		"""
+		first: Int
+
+		"""
+		Returns the last n elements from the list.
+		"""
+		last: Int
+
+		"""
+		Returns the elements in the list that come before the specified cursor.
+		"""
+		before: String
+
+		"""
+		Returns the elements in the list that come after the specified cursor.
+		"""
+		after: String
+	): ClientConnection
+	_id: Int!
+	friendlyName: String!
+	handle: String!
+	displayOrder: Int
+	createdAt: String!
+	updatedAt: String!
+	deletedAt: String
+
+	"""
+	Check if the entity has been soft deleted.
+	"""
+	deleted: Boolean!
+}
+
+"""
+Connection for Industry.
+"""
+type IndustryConnection {
+	edges: [IndustryEdge]
+	pageInfo: IndustryPageInfo!
+	totalCount: Int!
+}
+
+"""
+Edge of Industry.
+"""
+type IndustryEdge {
+	node: Industry
+	cursor: String!
+}
+
+"""
+Information about the current page.
+"""
+type IndustryPageInfo {
+	endCursor: String
+	startCursor: String
+	hasNextPage: Boolean!
+	hasPreviousPage: Boolean!
+}
+
+type Label implements Node {
+	id: ID!
+	_id: Int!
+	name: String!
+}
+
+"""
+Connection for Label.
+"""
+type LabelConnection {
+	edges: [LabelEdge]
+	pageInfo: LabelPageInfo!
+	totalCount: Int!
+}
+
+"""
+Edge of Label.
+"""
+type LabelEdge {
+	node: Label
+	cursor: String!
+}
+
+"""
+Information about the current page.
+"""
+type LabelPageInfo {
+	endCursor: String
+	startCursor: String
+	hasNextPage: Boolean!
+	hasPreviousPage: Boolean!
+}
+
+type Mutation {
+	"""
+	Deletes a Changelog.
+	"""
+	deleteChangelog(input: deleteChangelogInput!): deleteChangelogPayload
+
+	"""
+	Updates a Changelog.
+	"""
+	updateChangelog(input: updateChangelogInput!): updateChangelogPayload
+
+	"""
+	Creates a Changelog.
+	"""
+	createChangelog(input: createChangelogInput!): createChangelogPayload
+
+	"""
+	Deletes a GitEvent.
+	"""
+	deleteGitEvent(input: deleteGitEventInput!): deleteGitEventPayload
+
+	"""
+	Updates a GitEvent.
+	"""
+	updateGitEvent(input: updateGitEventInput!): updateGitEventPayload
+
+	"""
+	Creates a GitEvent.
+	"""
+	createGitEvent(input: createGitEventInput!): createGitEventPayload
+
+	"""
+	Deletes a History.
+	"""
+	deleteHistory(input: deleteHistoryInput!): deleteHistoryPayload
+
+	"""
+	Updates a History.
+	"""
+	updateHistory(input: updateHistoryInput!): updateHistoryPayload
+
+	"""
+	Creates a History.
+	"""
+	createHistory(input: createHistoryInput!): createHistoryPayload
+
+	"""
+	Updates a Activity.
+	"""
+	updateActivity(input: updateActivityInput!): updateActivityPayload
+
+	"""
+	Creates a Activity.
+	"""
+	createActivity(input: createActivityInput!): createActivityPayload
+
+	"""
+	Deletes a Activity.
+	"""
+	deleteActivity(input: deleteActivityInput!): deleteActivityPayload
+
+	"""
+	Deletes a ActivityType.
+	"""
+	deleteActivityType(input: deleteActivityTypeInput!): deleteActivityTypePayload
+
+	"""
+	Updates a ActivityType.
+	"""
+	updateActivityType(input: updateActivityTypeInput!): updateActivityTypePayload
+
+	"""
+	Creates a ActivityType.
+	"""
+	createActivityType(input: createActivityTypeInput!): createActivityTypePayload
+
+	"""
+	Deletes a BusinessBranch.
+	"""
+	deleteBusinessBranch(
+		input: deleteBusinessBranchInput!
+	): deleteBusinessBranchPayload
+
+	"""
+	Updates a BusinessBranch.
+	"""
+	updateBusinessBranch(
+		input: updateBusinessBranchInput!
+	): updateBusinessBranchPayload
+
+	"""
+	Creates a BusinessBranch.
+	"""
+	createBusinessBranch(
+		input: createBusinessBranchInput!
+	): createBusinessBranchPayload
+
+	"""
+	Deletes a Client.
+	"""
+	deleteClient(input: deleteClientInput!): deleteClientPayload
+
+	"""
+	Updates a Client.
+	"""
+	updateClient(input: updateClientInput!): updateClientPayload
+
+	"""
+	Creates a Client.
+	"""
+	createClient(input: createClientInput!): createClientPayload
+
+	"""
+	Updates a Comment.
+	"""
+	updateComment(input: updateCommentInput!): updateCommentPayload
+
+	"""
+	Gets a Comment.
+	"""
+	getComment(input: getCommentInput!): getCommentPayload
+
+	"""
+	Creates a Comment.
+	"""
+	createComment(input: createCommentInput!): createCommentPayload
+
+	"""
+	Deletes a Comment.
+	"""
+	deleteComment(input: deleteCommentInput!): deleteCommentPayload
+
+	"""
+	Deletes a CompanyPosition.
+	"""
+	deleteCompanyPosition(
+		input: deleteCompanyPositionInput!
+	): deleteCompanyPositionPayload
+
+	"""
+	Updates a CompanyPosition.
+	"""
+	updateCompanyPosition(
+		input: updateCompanyPositionInput!
+	): updateCompanyPositionPayload
+
+	"""
+	Creates a CompanyPosition.
+	"""
+	createCompanyPosition(
+		input: createCompanyPositionInput!
+	): createCompanyPositionPayload
+
+	"""
+	Deletes a Country.
+	"""
+	deleteCountry(input: deleteCountryInput!): deleteCountryPayload
+
+	"""
+	Updates a Country.
+	"""
+	updateCountry(input: updateCountryInput!): updateCountryPayload
+
+	"""
+	Creates a Country.
+	"""
+	createCountry(input: createCountryInput!): createCountryPayload
+
+	"""
+	Deletes a Currency.
+	"""
+	deleteCurrency(input: deleteCurrencyInput!): deleteCurrencyPayload
+
+	"""
+	Updates a Currency.
+	"""
+	updateCurrency(input: updateCurrencyInput!): updateCurrencyPayload
+
+	"""
+	Creates a Currency.
+	"""
+	createCurrency(input: createCurrencyInput!): createCurrencyPayload
+
+	"""
+	Deletes a Department.
+	"""
+	deleteDepartment(input: deleteDepartmentInput!): deleteDepartmentPayload
+
+	"""
+	Updates a Department.
+	"""
+	updateDepartment(input: updateDepartmentInput!): updateDepartmentPayload
+
+	"""
+	Creates a Department.
+	"""
+	createDepartment(input: createDepartmentInput!): createDepartmentPayload
+
+	"""
+	Deletes a GitProject.
+	"""
+	deleteGitProject(input: deleteGitProjectInput!): deleteGitProjectPayload
+
+	"""
+	Updates a GitProject.
+	"""
+	updateGitProject(input: updateGitProjectInput!): updateGitProjectPayload
+
+	"""
+	Creates a GitProject.
+	"""
+	createGitProject(input: createGitProjectInput!): createGitProjectPayload
+
+	"""
+	Deletes a Industry.
+	"""
+	deleteIndustry(input: deleteIndustryInput!): deleteIndustryPayload
+
+	"""
+	Updates a Industry.
+	"""
+	updateIndustry(input: updateIndustryInput!): updateIndustryPayload
+
+	"""
+	Creates a Industry.
+	"""
+	createIndustry(input: createIndustryInput!): createIndustryPayload
+
+	"""
+	Deletes a Label.
+	"""
+	deleteLabel(input: deleteLabelInput!): deleteLabelPayload
+
+	"""
+	Updates a Label.
+	"""
+	updateLabel(input: updateLabelInput!): updateLabelPayload
+
+	"""
+	Creates a Label.
+	"""
+	createLabel(input: createLabelInput!): createLabelPayload
+
+	"""
+	Deletes a Priority.
+	"""
+	deletePriority(input: deletePriorityInput!): deletePriorityPayload
+
+	"""
+	Updates a Priority.
+	"""
+	updatePriority(input: updatePriorityInput!): updatePriorityPayload
+
+	"""
+	Creates a Priority.
+	"""
+	createPriority(input: createPriorityInput!): createPriorityPayload
+
+	"""
+	Deletes a ProjectType.
+	"""
+	deleteProjectType(input: deleteProjectTypeInput!): deleteProjectTypePayload
+
+	"""
+	Updates a ProjectType.
+	"""
+	updateProjectType(input: updateProjectTypeInput!): updateProjectTypePayload
+
+	"""
+	Creates a ProjectType.
+	"""
+	createProjectType(input: createProjectTypeInput!): createProjectTypePayload
+
+	"""
+	Creates a Role.
+	"""
+	createRole(input: createRoleInput!): createRolePayload
+
+	"""
+	Updates a Role.
+	"""
+	updateRole(input: updateRoleInput!): updateRolePayload
+
+	"""
+	Updates a Sprint.
+	"""
+	updateSprint(input: updateSprintInput!): updateSprintPayload
+
+	"""
+	Creates a Sprint.
+	"""
+	createSprint(input: createSprintInput!): createSprintPayload
+
+	"""
+	Deletes a Status.
+	"""
+	deleteStatus(input: deleteStatusInput!): deleteStatusPayload
+
+	"""
+	Updates a Status.
+	"""
+	updateStatus(input: updateStatusInput!): updateStatusPayload
+
+	"""
+	Creates a Status.
+	"""
+	createStatus(input: createStatusInput!): createStatusPayload
+
+	"""
+	Deletes a Task.
+	"""
+	deleteTask(input: deleteTaskInput!): deleteTaskPayload
+
+	"""
+	Updates a Task.
+	"""
+	updateTask(input: updateTaskInput!): updateTaskPayload
+
+	"""
+	Creates a Task.
+	"""
+	createTask(input: createTaskInput!): createTaskPayload
+
+	"""
+	Deletes a Team.
+	"""
+	deleteTeam(input: deleteTeamInput!): deleteTeamPayload
+
+	"""
+	Updates a Team.
+	"""
+	updateTeam(input: updateTeamInput!): updateTeamPayload
+
+	"""
+	Creates a Team.
+	"""
+	createTeam(input: createTeamInput!): createTeamPayload
+
+	"""
+	Deletes a Technology.
+	"""
+	deleteTechnology(input: deleteTechnologyInput!): deleteTechnologyPayload
+
+	"""
+	Updates a Technology.
+	"""
+	updateTechnology(input: updateTechnologyInput!): updateTechnologyPayload
+
+	"""
+	Creates a Technology.
+	"""
+	createTechnology(input: createTechnologyInput!): createTechnologyPayload
+
+	"""
+	Deletes a TrackerTaskType.
+	"""
+	deleteTrackerTaskType(
+		input: deleteTrackerTaskTypeInput!
+	): deleteTrackerTaskTypePayload
+
+	"""
+	Updates a TrackerTaskType.
+	"""
+	updateTrackerTaskType(
+		input: updateTrackerTaskTypeInput!
+	): updateTrackerTaskTypePayload
+
+	"""
+	Creates a TrackerTaskType.
+	"""
+	createTrackerTaskType(
+		input: createTrackerTaskTypeInput!
+	): createTrackerTaskTypePayload
+
+	"""
+	Deletes a WitcherProject.
+	"""
+	deleteWitcherProject(
+		input: deleteWitcherProjectInput!
+	): deleteWitcherProjectPayload
+
+	"""
+	Updates a WitcherProject.
+	"""
+	updateWitcherProject(
+		input: updateWitcherProjectInput!
+	): updateWitcherProjectPayload
+
+	"""
+	Creates a WitcherProject.
+	"""
+	createWitcherProject(
+		input: createWitcherProjectInput!
+	): createWitcherProjectPayload
+
+	"""
+	Updates a WitcherProjectTrackerTaskType.
+	"""
+	updateWitcherProjectTrackerTaskType(
+		input: updateWitcherProjectTrackerTaskTypeInput!
+	): updateWitcherProjectTrackerTaskTypePayload
+
+	"""
+	Deletes a WitcherProjectTrackerTaskType.
+	"""
+	deleteWitcherProjectTrackerTaskType(
+		input: deleteWitcherProjectTrackerTaskTypeInput!
+	): deleteWitcherProjectTrackerTaskTypePayload
+
+	"""
+	Deletes a WitcherUser.
+	"""
+	deleteWitcherUser(input: deleteWitcherUserInput!): deleteWitcherUserPayload
+
+	"""
+	Updates a WitcherUser.
+	"""
+	updateWitcherUser(input: updateWitcherUserInput!): updateWitcherUserPayload
+
+	"""
+	Creates a WitcherUser.
+	"""
+	createWitcherUser(input: createWitcherUserInput!): createWitcherUserPayload
+}
+
+"""
+A node, according to the Relay specification.
+"""
+interface Node {
+	"""
+	The id of this node.
+	"""
+	id: ID!
+}
+
+type Permission implements Node {
+	id: ID!
+	_id: Int!
+	handle: String!
+	name: String!
+	description: String!
+	permissionGroup: PermissionGroup!
+}
+
+"""
+Connection for Permission.
+"""
+type PermissionConnection {
+	edges: [PermissionEdge]
+	pageInfo: PermissionPageInfo!
+	totalCount: Int!
+}
+
+"""
+Edge of Permission.
+"""
+type PermissionEdge {
+	node: Permission
+	cursor: String!
+}
+
+type PermissionGroup implements Node {
+	id: ID!
+	_id: Int!
+	handle: String!
+	name: String!
+	description: String!
+	permissions(
+		"""
+		Returns the first n elements from the list.
+		"""
+		first: Int
+
+		"""
+		Returns the last n elements from the list.
+		"""
+		last: Int
+
+		"""
+		Returns the elements in the list that come before the specified cursor.
+		"""
+		before: String
+
+		"""
+		Returns the elements in the list that come after the specified cursor.
+		"""
+		after: String
+	): PermissionConnection
+}
+
+"""
+Connection for PermissionGroup.
+"""
+type PermissionGroupConnection {
+	edges: [PermissionGroupEdge]
+	pageInfo: PermissionGroupPageInfo!
+	totalCount: Int!
+}
+
+"""
+Edge of PermissionGroup.
+"""
+type PermissionGroupEdge {
+	node: PermissionGroup
+	cursor: String!
+}
+
+"""
+Information about the current page.
+"""
+type PermissionGroupPageInfo {
+	endCursor: String
+	startCursor: String
+	hasNextPage: Boolean!
+	hasPreviousPage: Boolean!
+}
+
+"""
+Information about the current page.
+"""
+type PermissionPageInfo {
+	endCursor: String
+	startCursor: String
+	hasNextPage: Boolean!
+	hasPreviousPage: Boolean!
+}
+
+type Priority implements Node {
+	id: ID!
+	description: String
+	statusColor: String!
+	_id: Int!
+	friendlyName: String!
+	handle: String!
+	displayOrder: Int
+}
+
+"""
+Connection for Priority.
+"""
+type PriorityConnection {
+	edges: [PriorityEdge]
+	pageInfo: PriorityPageInfo!
+	totalCount: Int!
+}
+
+"""
+Edge of Priority.
+"""
+type PriorityEdge {
+	node: Priority
+	cursor: String!
+}
+
+"""
+Information about the current page.
+"""
+type PriorityPageInfo {
+	endCursor: String
+	startCursor: String
+	hasNextPage: Boolean!
+	hasPreviousPage: Boolean!
+}
+
+type ProjectType implements Node {
+	id: ID!
+	businessBranch: BusinessBranch!
+	_id: Int!
+	friendlyName: String!
+	handle: String!
+	displayOrder: Int
+}
+
+"""
+Connection for ProjectType.
+"""
+type ProjectTypeConnection {
+	edges: [ProjectTypeEdge]
+	pageInfo: ProjectTypePageInfo!
+	totalCount: Int!
+}
+
+"""
+Edge of ProjectType.
+"""
+type ProjectTypeEdge {
+	node: ProjectType
+	cursor: String!
+}
+
+input ProjectTypeFilter_order {
+	handle: String
+	businessBranch_handle: String
+}
+
+"""
+Information about the current page.
+"""
+type ProjectTypePageInfo {
+	endCursor: String
+	startCursor: String
+	hasNextPage: Boolean!
+	hasPreviousPage: Boolean!
+}
+
+type Query {
+	node(id: ID!): Node
+	changelog(id: ID!): Changelog
+	changelogs: [Changelog]
+	commits(
+		"""
+		Returns the first n elements from the list.
+		"""
+		first: Int
+
+		"""
+		Returns the last n elements from the list.
+		"""
+		last: Int
+
+		"""
+		Returns the elements in the list that come before the specified cursor.
+		"""
+		before: String
+
+		"""
+		Returns the elements in the list that come after the specified cursor.
+		"""
+		after: String
+		project: String!
+		branch: String
+	): CommitConnection
+	gitEvent(id: ID!): GitEvent
+	gitEvents(
+		"""
+		Returns the first n elements from the list.
+		"""
+		first: Int
+
+		"""
+		Returns the last n elements from the list.
+		"""
+		last: Int
+
+		"""
+		Returns the elements in the list that come before the specified cursor.
+		"""
+		before: String
+
+		"""
+		Returns the elements in the list that come after the specified cursor.
+		"""
+		after: String
+	): GitEventConnection
+	gitlabProject(id: ID!): GitlabProject
+	gitlabProjects(
+		"""
+		Returns the first n elements from the list.
+		"""
+		first: Int
+
+		"""
+		Returns the last n elements from the list.
+		"""
+		last: Int
+
+		"""
+		Returns the elements in the list that come before the specified cursor.
+		"""
+		before: String
+
+		"""
+		Returns the elements in the list that come after the specified cursor.
+		"""
+		after: String
+	): GitlabProjectConnection
+	history(id: ID!): History
+	histories(
+		"""
+		Returns the first n elements from the list.
+		"""
+		first: Int
+
+		"""
+		Returns the last n elements from the list.
+		"""
+		last: Int
+
+		"""
+		Returns the elements in the list that come before the specified cursor.
+		"""
+		before: String
+
+		"""
+		Returns the elements in the list that come after the specified cursor.
+		"""
+		after: String
+		taskId: Int
+		taskId_list: [Int]
+		slug: String
+		slug_list: [String]
+		creatorId: Int
+		creatorId_list: [Int]
+		changelog_field: String
+		changelog_field_list: [String]
+		entityType: String
+		entityType_list: [String]
+		createdAt: String
+		createdAt_list: [String]
+	): HistoryConnection
+	weeklyTask(id: ID!): WeeklyTask
+	activity(id: ID!): Activity
+	activities(
+		"""
+		Returns the first n elements from the list.
+		"""
+		first: Int
+
+		"""
+		Returns the last n elements from the list.
+		"""
+		last: Int
+
+		"""
+		Returns the elements in the list that come before the specified cursor.
+		"""
+		before: String
+
+		"""
+		Returns the elements in the list that come after the specified cursor.
+		"""
+		after: String
+		task_slug: String
+		task_slug_list: [String]
+		activityType: String
+		activityType_list: [String]
+		createdBy: String
+		createdBy_list: [String]
+		activityAt: ActivityFilter_activityAt
+		order: ActivityFilter_order
+	): ActivityConnection
+	activityType(id: ID!): ActivityType
+	activityTypes(
+		"""
+		Returns the first n elements from the list.
+		"""
+		first: Int
+
+		"""
+		Returns the last n elements from the list.
+		"""
+		last: Int
+
+		"""
+		Returns the elements in the list that come before the specified cursor.
+		"""
+		before: String
+
+		"""
+		Returns the elements in the list that come after the specified cursor.
+		"""
+		after: String
+	): ActivityTypeConnection
+	businessBranch(id: ID!): BusinessBranch
+	businessBranches(
+		"""
+		Returns the first n elements from the list.
+		"""
+		first: Int
+
+		"""
+		Returns the last n elements from the list.
+		"""
+		last: Int
+
+		"""
+		Returns the elements in the list that come before the specified cursor.
+		"""
+		before: String
+
+		"""
+		Returns the elements in the list that come after the specified cursor.
+		"""
+		after: String
+	): BusinessBranchConnection
+	client(id: ID!): Client
+	clients(
+		"""
+		Returns the first n elements from the list.
+		"""
+		first: Int
+
+		"""
+		Returns the last n elements from the list.
+		"""
+		last: Int
+
+		"""
+		Returns the elements in the list that come before the specified cursor.
+		"""
+		before: String
+
+		"""
+		Returns the elements in the list that come after the specified cursor.
+		"""
+		after: String
+	): ClientConnection
+	companyPosition(id: ID!): CompanyPosition
+	companyPositions(
+		"""
+		Returns the first n elements from the list.
+		"""
+		first: Int
+
+		"""
+		Returns the last n elements from the list.
+		"""
+		last: Int
+
+		"""
+		Returns the elements in the list that come before the specified cursor.
+		"""
+		before: String
+
+		"""
+		Returns the elements in the list that come after the specified cursor.
+		"""
+		after: String
+	): CompanyPositionConnection
+	country(id: ID!): Country
+	countries(
+		"""
+		Returns the first n elements from the list.
+		"""
+		first: Int
+
+		"""
+		Returns the last n elements from the list.
+		"""
+		last: Int
+
+		"""
+		Returns the elements in the list that come before the specified cursor.
+		"""
+		before: String
+
+		"""
+		Returns the elements in the list that come after the specified cursor.
+		"""
+		after: String
+	): CountryConnection
+	currency(id: ID!): Currency
+	currencies(
+		"""
+		Returns the first n elements from the list.
+		"""
+		first: Int
+
+		"""
+		Returns the last n elements from the list.
+		"""
+		last: Int
+
+		"""
+		Returns the elements in the list that come before the specified cursor.
+		"""
+		before: String
+
+		"""
+		Returns the elements in the list that come after the specified cursor.
+		"""
+		after: String
+	): CurrencyConnection
+	department(id: ID!): Department
+	departments(
+		"""
+		Returns the first n elements from the list.
+		"""
+		first: Int
+
+		"""
+		Returns the last n elements from the list.
+		"""
+		last: Int
+
+		"""
+		Returns the elements in the list that come before the specified cursor.
+		"""
+		before: String
+
+		"""
+		Returns the elements in the list that come after the specified cursor.
+		"""
+		after: String
+	): DepartmentConnection
+	estimationType(id: ID!): EstimationType
+	estimationTypes(
+		"""
+		Returns the first n elements from the list.
+		"""
+		first: Int
+
+		"""
+		Returns the last n elements from the list.
+		"""
+		last: Int
+
+		"""
+		Returns the elements in the list that come before the specified cursor.
+		"""
+		before: String
+
+		"""
+		Returns the elements in the list that come after the specified cursor.
+		"""
+		after: String
+	): EstimationTypeConnection
+	gitProject(id: ID!): GitProject
+	gitProjects(
+		"""
+		Returns the first n elements from the list.
+		"""
+		first: Int
+
+		"""
+		Returns the last n elements from the list.
+		"""
+		last: Int
+
+		"""
+		Returns the elements in the list that come before the specified cursor.
+		"""
+		before: String
+
+		"""
+		Returns the elements in the list that come after the specified cursor.
+		"""
+		after: String
+	): GitProjectConnection
+	industry(id: ID!): Industry
+	industries(
+		"""
+		Returns the first n elements from the list.
+		"""
+		first: Int
+
+		"""
+		Returns the last n elements from the list.
+		"""
+		last: Int
+
+		"""
+		Returns the elements in the list that come before the specified cursor.
+		"""
+		before: String
+
+		"""
+		Returns the elements in the list that come after the specified cursor.
+		"""
+		after: String
+	): IndustryConnection
+	label(id: ID!): Label
+	labels(
+		"""
+		Returns the first n elements from the list.
+		"""
+		first: Int
+
+		"""
+		Returns the last n elements from the list.
+		"""
+		last: Int
+
+		"""
+		Returns the elements in the list that come before the specified cursor.
+		"""
+		before: String
+
+		"""
+		Returns the elements in the list that come after the specified cursor.
+		"""
+		after: String
+	): LabelConnection
+	permissions(
+		"""
+		Returns the first n elements from the list.
+		"""
+		first: Int
+
+		"""
+		Returns the last n elements from the list.
+		"""
+		last: Int
+
+		"""
+		Returns the elements in the list that come before the specified cursor.
+		"""
+		before: String
+
+		"""
+		Returns the elements in the list that come after the specified cursor.
+		"""
+		after: String
+	): PermissionConnection
+	permission(id: ID!): Permission
+	permissionGroups(
+		"""
+		Returns the first n elements from the list.
+		"""
+		first: Int
+
+		"""
+		Returns the last n elements from the list.
+		"""
+		last: Int
+
+		"""
+		Returns the elements in the list that come before the specified cursor.
+		"""
+		before: String
+
+		"""
+		Returns the elements in the list that come after the specified cursor.
+		"""
+		after: String
+	): PermissionGroupConnection
+	permissionGroup(id: ID!): PermissionGroup
+	priority(id: ID!): Priority
+	priorities(
+		"""
+		Returns the first n elements from the list.
+		"""
+		first: Int
+
+		"""
+		Returns the last n elements from the list.
+		"""
+		last: Int
+
+		"""
+		Returns the elements in the list that come before the specified cursor.
+		"""
+		before: String
+
+		"""
+		Returns the elements in the list that come after the specified cursor.
+		"""
+		after: String
+	): PriorityConnection
+	projectType(id: ID!): ProjectType
+	projectTypes(
+		"""
+		Returns the first n elements from the list.
+		"""
+		first: Int
+
+		"""
+		Returns the last n elements from the list.
+		"""
+		last: Int
+
+		"""
+		Returns the elements in the list that come before the specified cursor.
+		"""
+		before: String
+
+		"""
+		Returns the elements in the list that come after the specified cursor.
+		"""
+		after: String
+		businessBranch_handle: String
+		businessBranch_handle_list: [String]
+		order: ProjectTypeFilter_order
+	): ProjectTypeConnection
+	role(id: ID!): Role
+	roles(
+		"""
+		Returns the first n elements from the list.
+		"""
+		first: Int
+
+		"""
+		Returns the last n elements from the list.
+		"""
+		last: Int
+
+		"""
+		Returns the elements in the list that come before the specified cursor.
+		"""
+		before: String
+
+		"""
+		Returns the elements in the list that come after the specified cursor.
+		"""
+		after: String
+	): RoleConnection
+	sprint(id: ID!): Sprint
+	sprints(
+		"""
+		Returns the first n elements from the list.
+		"""
+		first: Int
+
+		"""
+		Returns the last n elements from the list.
+		"""
+		last: Int
+
+		"""
+		Returns the elements in the list that come before the specified cursor.
+		"""
+		before: String
+
+		"""
+		Returns the elements in the list that come after the specified cursor.
+		"""
+		after: String
+		witcherProject_slug: String
+		witcherProject_slug_list: [String]
+		id: Int
+		id_list: [Int]
+		startedAt: SprintFilter_startedAt
+		endedAt: SprintFilter_endedAt
+		completedAt: SprintFilter_completedAt
+		closed: Boolean
+		order: SprintFilter_order
+	): SprintConnection
+	status(id: ID!): Status
+	statuses(
+		"""
+		Returns the first n elements from the list.
+		"""
+		first: Int
+
+		"""
+		Returns the last n elements from the list.
+		"""
+		last: Int
+
+		"""
+		Returns the elements in the list that come before the specified cursor.
+		"""
+		before: String
+
+		"""
+		Returns the elements in the list that come after the specified cursor.
+		"""
+		after: String
+	): StatusConnection
+	task(id: ID!): Task
+	tasks(
+		"""
+		Returns the first n elements from the list.
+		"""
+		first: Int
+
+		"""
+		Returns the last n elements from the list.
+		"""
+		last: Int
+
+		"""
+		Returns the elements in the list that come before the specified cursor.
+		"""
+		before: String
+
+		"""
+		Returns the elements in the list that come after the specified cursor.
+		"""
+		after: String
+		createdBy: String
+		createdBy_list: [String]
+		assignee: String
+		assignee_list: [String]
+		reporter: String
+		reporter_list: [String]
+		witcherProject_slug: String
+		witcherProject_slug_list: [String]
+		status_handle: String
+		status_handle_list: [String]
+		sprints: String
+		sprints_list: [String]
+		sprints_name: String
+		searchSummary: String
+		createdAt: TaskFilter_createdAt
+		dueAt: TaskFilter_dueAt
+		order: TaskFilter_order
+	): TaskConnection
+	team(id: ID!): Team
+	teams(
+		"""
+		Returns the first n elements from the list.
+		"""
+		first: Int
+
+		"""
+		Returns the last n elements from the list.
+		"""
+		last: Int
+
+		"""
+		Returns the elements in the list that come before the specified cursor.
+		"""
+		before: String
+
+		"""
+		Returns the elements in the list that come after the specified cursor.
+		"""
+		after: String
+	): TeamConnection
+	technology(id: ID!): Technology
+	technologies(
+		"""
+		Returns the first n elements from the list.
+		"""
+		first: Int
+
+		"""
+		Returns the last n elements from the list.
+		"""
+		last: Int
+
+		"""
+		Returns the elements in the list that come before the specified cursor.
+		"""
+		before: String
+
+		"""
+		Returns the elements in the list that come after the specified cursor.
+		"""
+		after: String
+	): TechnologyConnection
+	trackerTaskType(id: ID!): TrackerTaskType
+	trackerTaskTypes(
+		"""
+		Returns the first n elements from the list.
+		"""
+		first: Int
+
+		"""
+		Returns the last n elements from the list.
+		"""
+		last: Int
+
+		"""
+		Returns the elements in the list that come before the specified cursor.
+		"""
+		before: String
+
+		"""
+		Returns the elements in the list that come after the specified cursor.
+		"""
+		after: String
+	): TrackerTaskTypeConnection
+	witcherProject(id: ID!): WitcherProject
+	witcherProjects(
+		"""
+		Returns the first n elements from the list.
+		"""
+		first: Int
+
+		"""
+		Returns the last n elements from the list.
+		"""
+		last: Int
+
+		"""
+		Returns the elements in the list that come before the specified cursor.
+		"""
+		before: String
+
+		"""
+		Returns the elements in the list that come after the specified cursor.
+		"""
+		after: String
+		slug: String
+		slug_list: [String]
+		projectType: String
+		projectType_list: [String]
+	): WitcherProjectConnection
+	witcherProjectTrackerTaskType(id: ID!): WitcherProjectTrackerTaskType
+	witcherProjectTrackerTaskTypes(
+		"""
+		Returns the first n elements from the list.
+		"""
+		first: Int
+
+		"""
+		Returns the last n elements from the list.
+		"""
+		last: Int
+
+		"""
+		Returns the elements in the list that come before the specified cursor.
+		"""
+		before: String
+
+		"""
+		Returns the elements in the list that come after the specified cursor.
+		"""
+		after: String
+		isSubTaskLevel: Boolean
+		witcherProject_slug: String
+		witcherProject_slug_list: [String]
+		isSubTaskLevel_list: [Boolean]
+		trackerTaskType_friendlyName: String
+		trackerTaskType_friendlyName_list: [String]
+	): WitcherProjectTrackerTaskTypeConnection
+	witcherUser(id: ID!): WitcherUser
+	witcherUsers(
+		"""
+		Returns the first n elements from the list.
+		"""
+		first: Int
+
+		"""
+		Returns the last n elements from the list.
+		"""
+		last: Int
+
+		"""
+		Returns the elements in the list that come before the specified cursor.
+		"""
+		before: String
+
+		"""
+		Returns the elements in the list that come after the specified cursor.
+		"""
+		after: String
+	): WitcherUserConnection
+}
+
+type Role implements Node {
+	id: ID!
+	_id: Int!
+	handle: String!
+	name: String!
+	description: String!
+	permissions(
+		"""
+		Returns the first n elements from the list.
+		"""
+		first: Int
+
+		"""
+		Returns the last n elements from the list.
+		"""
+		last: Int
+
+		"""
+		Returns the elements in the list that come before the specified cursor.
+		"""
+		before: String
+
+		"""
+		Returns the elements in the list that come after the specified cursor.
+		"""
+		after: String
+	): PermissionConnection
+}
+
+"""
+Connection for Role.
+"""
+type RoleConnection {
+	edges: [RoleEdge]
+	pageInfo: RolePageInfo!
+	totalCount: Int!
+}
+
+"""
+Edge of Role.
+"""
+type RoleEdge {
+	node: Role
+	cursor: String!
+}
+
+"""
+Information about the current page.
+"""
+type RolePageInfo {
+	endCursor: String
+	startCursor: String
+	hasNextPage: Boolean!
+	hasPreviousPage: Boolean!
+}
+
+type Sprint implements Node {
+	id: ID!
+	_id: Int!
+	name: String!
+	startedAt: String
+	endedAt: String
+	completedAt: String
+	description: String
+	closed: Boolean!
+	witcherProject: WitcherProject!
+}
+
+"""
+Connection for Sprint.
+"""
+type SprintConnection {
+	edges: [SprintEdge]
+	pageInfo: SprintPageInfo!
+	totalCount: Int!
+}
+
+"""
+Edge of Sprint.
+"""
+type SprintEdge {
+	node: Sprint
+	cursor: String!
+}
+
+input SprintFilter_completedAt {
+	before: String
+	strictly_before: String
+	after: String
+	strictly_after: String
+}
+
+input SprintFilter_endedAt {
+	before: String
+	strictly_before: String
+	after: String
+	strictly_after: String
+}
+
+input SprintFilter_order {
+	witcherProject_slug: String
+	startedAt: String
+	endedAt: String
+	completedAt: String
+	closed: String
+}
+
+input SprintFilter_startedAt {
+	before: String
+	strictly_before: String
+	after: String
+	strictly_after: String
+}
+
+"""
+Information about the current page.
+"""
+type SprintPageInfo {
+	endCursor: String
+	startCursor: String
+	hasNextPage: Boolean!
+	hasPreviousPage: Boolean!
+}
+
+type Status implements Node {
+	id: ID!
+	description: String!
+	_id: Int!
+	friendlyName: String!
+	handle: String!
+	displayOrder: Int
+	createdAt: String!
+	updatedAt: String!
+	deletedAt: String
+
+	"""
+	Check if the entity has been soft deleted.
+	"""
+	deleted: Boolean!
+}
+
+"""
+Connection for Status.
+"""
+type StatusConnection {
+	edges: [StatusEdge]
+	pageInfo: StatusPageInfo!
+	totalCount: Int!
+}
+
+"""
+Edge of Status.
+"""
+type StatusEdge {
+	node: Status
+	cursor: String!
+}
+
+"""
+Information about the current page.
+"""
+type StatusPageInfo {
+	endCursor: String
+	startCursor: String
+	hasNextPage: Boolean!
+	hasPreviousPage: Boolean!
+}
+
+type Task implements Node {
+	id: ID!
+	_id: Int!
+	witcherProject: WitcherProject!
+	assignee: WitcherUser
+	reporter: WitcherUser
+	status: Status!
+	priority: Priority
+	externalTrackerLink: String
+	description: String
+	activities(
+		"""
+		Returns the first n elements from the list.
+		"""
+		first: Int
+
+		"""
+		Returns the last n elements from the list.
+		"""
+		last: Int
+
+		"""
+		Returns the elements in the list that come before the specified cursor.
+		"""
+		before: String
+
+		"""
+		Returns the elements in the list that come after the specified cursor.
+		"""
+		after: String
+		task_slug: String
+		task_slug_list: [String]
+		activityType: String
+		activityType_list: [String]
+		createdBy: String
+		createdBy_list: [String]
+		activityAt: ActivityFilter_activityAt
+		order: ActivityFilter_order
+	): ActivityConnection
+	labels(
+		"""
+		Returns the first n elements from the list.
+		"""
+		first: Int
+
+		"""
+		Returns the last n elements from the list.
+		"""
+		last: Int
+
+		"""
+		Returns the elements in the list that come before the specified cursor.
+		"""
+		before: String
+
+		"""
+		Returns the elements in the list that come after the specified cursor.
+		"""
+		after: String
+	): LabelConnection
+	trackerTaskType: TrackerTaskType!
+	slug: String!
+	externalKey: String
+	summary: String!
+	estimationTime: Int!
+	estimationSp: Int!
+	createdAt: String!
+	dueAt: String
+	sprints(
+		"""
+		Returns the first n elements from the list.
+		"""
+		first: Int
+
+		"""
+		Returns the last n elements from the list.
+		"""
+		last: Int
+
+		"""
+		Returns the elements in the list that come before the specified cursor.
+		"""
+		before: String
+
+		"""
+		Returns the elements in the list that come after the specified cursor.
+		"""
+		after: String
+		witcherProject_slug: String
+		witcherProject_slug_list: [String]
+		id: Int
+		id_list: [Int]
+		startedAt: SprintFilter_startedAt
+		endedAt: SprintFilter_endedAt
+		completedAt: SprintFilter_completedAt
+		closed: Boolean
+		order: SprintFilter_order
+	): SprintConnection
+	efficiencySp: String
+	efficiencyTime: String
+	createdBy: WitcherUser!
+	updatedBy: WitcherUser
+}
+
+"""
+Connection for Task.
+"""
+type TaskConnection {
+	edges: [TaskEdge]
+	pageInfo: TaskPageInfo!
+	totalCount: Int!
+}
+
+"""
+Edge of Task.
+"""
+type TaskEdge {
+	node: Task
+	cursor: String!
+}
+
+input TaskFilter_createdAt {
+	before: String
+	strictly_before: String
+	after: String
+	strictly_after: String
+}
+
+input TaskFilter_dueAt {
+	before: String
+	strictly_before: String
+	after: String
+	strictly_after: String
+}
+
+input TaskFilter_order {
+	id: String
+	slug: String
+	priority_handle: String
+	createdAt: String
+	dueAt: String
+}
+
+"""
+Information about the current page.
+"""
+type TaskPageInfo {
+	endCursor: String
+	startCursor: String
+	hasNextPage: Boolean!
+	hasPreviousPage: Boolean!
+}
+
+type Team implements Node {
+	id: ID!
+	name: String!
+	witcherProject: WitcherProject!
+	teamMembers(
+		"""
+		Returns the first n elements from the list.
+		"""
+		first: Int
+
+		"""
+		Returns the last n elements from the list.
+		"""
+		last: Int
+
+		"""
+		Returns the elements in the list that come before the specified cursor.
+		"""
+		before: String
+
+		"""
+		Returns the elements in the list that come after the specified cursor.
+		"""
+		after: String
+	): WitcherUserConnection
+	teamLeader: WitcherUser
+	createdBy: WitcherUser!
+	updatedBy: WitcherUser
+}
+
+"""
+Connection for Team.
+"""
+type TeamConnection {
+	edges: [TeamEdge]
+	pageInfo: TeamPageInfo!
+	totalCount: Int!
+}
+
+"""
+Edge of Team.
+"""
+type TeamEdge {
+	node: Team
+	cursor: String!
+}
+
+"""
+Information about the current page.
+"""
+type TeamPageInfo {
+	endCursor: String
+	startCursor: String
+	hasNextPage: Boolean!
+	hasPreviousPage: Boolean!
+}
+
+type Technology implements Node {
+	id: ID!
+	_id: Int!
+	name: String!
+}
+
+"""
+Connection for Technology.
+"""
+type TechnologyConnection {
+	edges: [TechnologyEdge]
+	pageInfo: TechnologyPageInfo!
+	totalCount: Int!
+}
+
+"""
+Edge of Technology.
+"""
+type TechnologyEdge {
+	node: Technology
+	cursor: String!
+}
+
+"""
+Information about the current page.
+"""
+type TechnologyPageInfo {
+	endCursor: String
+	startCursor: String
+	hasNextPage: Boolean!
+	hasPreviousPage: Boolean!
+}
+
+type TrackerTaskType implements Node {
+	id: ID!
+	_id: Int!
+	friendlyName: String!
+	handle: String!
+	displayOrder: Int
+}
+
+"""
+Connection for TrackerTaskType.
+"""
+type TrackerTaskTypeConnection {
+	edges: [TrackerTaskTypeEdge]
+	pageInfo: TrackerTaskTypePageInfo!
+	totalCount: Int!
+}
+
+"""
+Edge of TrackerTaskType.
+"""
+type TrackerTaskTypeEdge {
+	node: TrackerTaskType
+	cursor: String!
+}
+
+"""
+Information about the current page.
+"""
+type TrackerTaskTypePageInfo {
+	endCursor: String
+	startCursor: String
+	hasNextPage: Boolean!
+	hasPreviousPage: Boolean!
+}
+
+type WeeklyTask implements Node {
+	id: ID!
+	task: String!
+	weeklyWorkTime: Int!
+	weeklyWorkSp: Int!
+	todayWorkTime: Int!
+	todayWorkSp: Int!
+	totalTaskTime: Int!
+	totalTaskSp: Int!
+	taskEstimationTime: Int!
+	taskEstimationSp: Int!
+	efficiencyRate: String
+	efficiencyRateSp: String
+}
+
+type WitcherProject implements Node {
+	id: ID!
+	_id: Int!
+	name: String!
+	client: Client
+	projectType: ProjectType
+	tasks(
+		"""
+		Returns the first n elements from the list.
+		"""
+		first: Int
+
+		"""
+		Returns the last n elements from the list.
+		"""
+		last: Int
+
+		"""
+		Returns the elements in the list that come before the specified cursor.
+		"""
+		before: String
+
+		"""
+		Returns the elements in the list that come after the specified cursor.
+		"""
+		after: String
+		createdBy: String
+		createdBy_list: [String]
+		assignee: String
+		assignee_list: [String]
+		reporter: String
+		reporter_list: [String]
+		witcherProject_slug: String
+		witcherProject_slug_list: [String]
+		status_handle: String
+		status_handle_list: [String]
+		sprints: String
+		sprints_list: [String]
+		sprints_name: String
+		searchSummary: String
+		createdAt: TaskFilter_createdAt
+		dueAt: TaskFilter_dueAt
+		order: TaskFilter_order
+	): TaskConnection
+	gitProjects(
+		"""
+		Returns the first n elements from the list.
+		"""
+		first: Int
+
+		"""
+		Returns the last n elements from the list.
+		"""
+		last: Int
+
+		"""
+		Returns the elements in the list that come before the specified cursor.
+		"""
+		before: String
+
+		"""
+		Returns the elements in the list that come after the specified cursor.
+		"""
+		after: String
+	): GitProjectConnection
+	description: String
+	confluenceLink: String
+	witcherProjectTrackerTaskTypes(
+		"""
+		Returns the first n elements from the list.
+		"""
+		first: Int
+
+		"""
+		Returns the last n elements from the list.
+		"""
+		last: Int
+
+		"""
+		Returns the elements in the list that come before the specified cursor.
+		"""
+		before: String
+
+		"""
+		Returns the elements in the list that come after the specified cursor.
+		"""
+		after: String
+		isSubTaskLevel: Boolean
+		witcherProject_slug: String
+		witcherProject_slug_list: [String]
+		isSubTaskLevel_list: [Boolean]
+		trackerTaskType_friendlyName: String
+		trackerTaskType_friendlyName_list: [String]
+	): WitcherProjectTrackerTaskTypeConnection
+	slug: String!
+	estimationType: EstimationType
+	externalTrackerLink: String
+	externalKey: String
+	createdBy: WitcherUser!
+	updatedBy: WitcherUser
+}
+
+"""
+Connection for WitcherProject.
+"""
+type WitcherProjectConnection {
+	edges: [WitcherProjectEdge]
+	pageInfo: WitcherProjectPageInfo!
+	totalCount: Int!
+}
+
+"""
+Edge of WitcherProject.
+"""
+type WitcherProjectEdge {
+	node: WitcherProject
+	cursor: String!
+}
+
+"""
+Information about the current page.
+"""
+type WitcherProjectPageInfo {
+	endCursor: String
+	startCursor: String
+	hasNextPage: Boolean!
+	hasPreviousPage: Boolean!
+}
+
+type WitcherProjectTrackerTaskType implements Node {
+	id: ID!
+	_id: Int!
+	trackerTaskType: TrackerTaskType!
+	displayOrder: Int
+}
+
+"""
+Connection for WitcherProjectTrackerTaskType.
+"""
+type WitcherProjectTrackerTaskTypeConnection {
+	edges: [WitcherProjectTrackerTaskTypeEdge]
+	pageInfo: WitcherProjectTrackerTaskTypePageInfo!
+	totalCount: Int!
+}
+
+"""
+Edge of WitcherProjectTrackerTaskType.
+"""
+type WitcherProjectTrackerTaskTypeEdge {
+	node: WitcherProjectTrackerTaskType
+	cursor: String!
+}
+
+"""
+Information about the current page.
+"""
+type WitcherProjectTrackerTaskTypePageInfo {
+	endCursor: String
+	startCursor: String
+	hasNextPage: Boolean!
+	hasPreviousPage: Boolean!
+}
+
+"""
+TODO: Modify serialization groups for related entities in WITCHER-316
+"""
+type WitcherUser implements Node {
+	id: ID!
+	_id: Int!
+	userId: Int!
+	role: Role!
+	gitLabUserId: Int
+	jiraAccount: String!
+	companyPosition: CompanyPosition
+	departments(
+		"""
+		Returns the first n elements from the list.
+		"""
+		first: Int
+
+		"""
+		Returns the last n elements from the list.
+		"""
+		last: Int
+
+		"""
+		Returns the elements in the list that come before the specified cursor.
+		"""
+		before: String
+
+		"""
+		Returns the elements in the list that come after the specified cursor.
+		"""
+		after: String
+	): DepartmentConnection
+
+	"""
+	Supervisor to whom current user directly reports
+	"""
+	supervisor: WitcherUser
+}
+
+"""
+Connection for WitcherUser.
+"""
+type WitcherUserConnection {
+	edges: [WitcherUserEdge]
+	pageInfo: WitcherUserPageInfo!
+	totalCount: Int!
+}
+
+"""
+Edge of WitcherUser.
+"""
+type WitcherUserEdge {
+	node: WitcherUser
+	cursor: String!
+}
+
+"""
+Information about the current page.
+"""
+type WitcherUserPageInfo {
+	endCursor: String
+	startCursor: String
+	hasNextPage: Boolean!
+	hasPreviousPage: Boolean!
+}
+
+input createActivityInput {
+	estimationTime: Int!
+	estimationSp: Int!
+	task: String!
+	comment: String
+	activityType: String!
+	activityAt: String!
+	technology: String
+	source: String
+	clientMutationId: String
+}
+
+type createActivityPayload {
+	activity: Activity
+	clientMutationId: String
+}
+
+input createActivityTypeInput {
+	friendlyName: String!
+	handle: String!
+	displayOrder: Int
+	clientMutationId: String
+}
+
+type createActivityTypePayload {
+	activityType: ActivityType
+	clientMutationId: String
+}
+
+input createBusinessBranchInput {
+	friendlyName: String!
+	handle: String!
+	displayOrder: Int
+	clientMutationId: String
+}
+
+type createBusinessBranchPayload {
+	businessBranch: BusinessBranch
+	clientMutationId: String
+}
+
+input createChangelogInput {
+	_id: String!
+	field: String!
+	from: String
+	to: String
+	clientMutationId: String
+}
+
+type createChangelogPayload {
+	changelog: Changelog
+	clientMutationId: String
+}
+
+input createClientInput {
+	name: String!
+	country: String
+	industry: String
+	currency: String
+	clientMutationId: String
+}
+
+type createClientPayload {
+	client: Client
+	clientMutationId: String
+}
+
+input createCommentInput {
+	task: String!
+	comment: String!
+	clientMutationId: String
+}
+
+type createCommentPayload {
+	comment: Comment
+	clientMutationId: String
+}
+
+input createCompanyPositionInput {
+	name: String!
+	handle: String!
+	clientMutationId: String
+}
+
+type createCompanyPositionPayload {
+	companyPosition: CompanyPosition
+	clientMutationId: String
+}
+
+input createCountryInput {
+	client: String!
+	friendlyName: String!
+	handle: String!
+	displayOrder: Int
+	createdAt: String!
+	updatedAt: String!
+	deletedAt: String
+	clientMutationId: String
+}
+
+type createCountryPayload {
+	country: Country
+	clientMutationId: String
+}
+
+"""
+TODO: moneyphp/money bundle should be used instead. Will be changed in related tickets
+"""
+input createCurrencyInput {
+	client: String!
+	friendlyName: String!
+	handle: String!
+	displayOrder: Int
+	createdAt: String!
+	updatedAt: String!
+	deletedAt: String
+	clientMutationId: String
+}
+
+"""
+TODO: moneyphp/money bundle should be used instead. Will be changed in related tickets
+"""
+type createCurrencyPayload {
+	currency: Currency
+	clientMutationId: String
+}
+
+input createDepartmentInput {
+	name: String!
+	handle: String!
+	clientMutationId: String
+}
+
+type createDepartmentPayload {
+	department: Department
+	clientMutationId: String
+}
+
+input createGitEventInput {
+	_id: Int!
+	action: String!
+	title: String
+	targetType: String
+	author: String
+	createdAt: String!
+	content: String
+	projectId: Int!
+	clientMutationId: String
+}
+
+type createGitEventPayload {
+	gitEvent: GitEvent
+	clientMutationId: String
+}
+
+input createGitProjectInput {
+	witcherProject: String!
+	gitLabLink: String!
+	gitLabProjectId: String!
+	clientMutationId: String
+}
+
+type createGitProjectPayload {
+	gitProject: GitProject
+	clientMutationId: String
+}
+
+input createHistoryInput {
+	_id: String!
+	taskId: Int!
+	slug: String!
+	trackerEventId: Int
+	internalEventId: Int
+	createdAt: String!
+	creatorId: Int!
+	changelog: [createChangelogInput!]
+	entityType: String!
+	clientMutationId: String
+}
+
+type createHistoryPayload {
+	history: History
+	clientMutationId: String
+}
+
+input createIndustryInput {
+	client: String!
+	friendlyName: String!
+	handle: String!
+	displayOrder: Int
+	createdAt: String!
+	updatedAt: String!
+	deletedAt: String
+	clientMutationId: String
+}
+
+type createIndustryPayload {
+	industry: Industry
+	clientMutationId: String
+}
+
+input createLabelInput {
+	name: String!
+	clientMutationId: String
+}
+
+type createLabelPayload {
+	label: Label
+	clientMutationId: String
+}
+
+input createPriorityInput {
+	description: String
+	statusColor: String!
+	friendlyName: String!
+	handle: String!
+	displayOrder: Int
+	clientMutationId: String
+}
+
+type createPriorityPayload {
+	priority: Priority
+	clientMutationId: String
+}
+
+input createProjectTypeInput {
+	businessBranch: String!
+	friendlyName: String!
+	handle: String!
+	displayOrder: Int
+	clientMutationId: String
+}
+
+type createProjectTypePayload {
+	projectType: ProjectType
+	clientMutationId: String
+}
+
+input createRoleInput {
+	name: String!
+	description: String!
+	permissions: [String]
+	clientMutationId: String
+}
+
+type createRolePayload {
+	role: Role
+	clientMutationId: String
+}
+
+input createSprintInput {
+	name: String!
+	startedAt: String
+	endedAt: String
+	completedAt: String
+	description: String
+	closed: Boolean!
+	witcherProject: String!
+	clientMutationId: String
+}
+
+type createSprintPayload {
+	sprint: Sprint
+	clientMutationId: String
+}
+
+input createStatusInput {
+	description: String!
+	friendlyName: String!
+	handle: String!
+	displayOrder: Int
+	createdAt: String!
+	updatedAt: String!
+	deletedAt: String
+	clientMutationId: String
+}
+
+type createStatusPayload {
+	status: Status
+	clientMutationId: String
+}
+
+input createTaskInput {
+	witcherProject: String!
+	assignee: String
+	reporter: String
+	status: String!
+	priority: String
+	externalTrackerLink: String
+	description: String
+	labels: [String]
+	trackerTaskType: String!
+	summary: String!
+	estimationTime: Int!
+	estimationSp: Int!
+	dueAt: String
+	sprints: [String]
+	clientMutationId: String
+}
+
+type createTaskPayload {
+	task: Task
+	clientMutationId: String
+}
+
+input createTeamInput {
+	name: String!
+	witcherProject: String!
+	teamMembers: [String]
+	teamLeader: String
+	clientMutationId: String
+}
+
+type createTeamPayload {
+	team: Team
+	clientMutationId: String
+}
+
+input createTechnologyInput {
+	name: String!
+	clientMutationId: String
+}
+
+type createTechnologyPayload {
+	technology: Technology
+	clientMutationId: String
+}
+
+input createTrackerTaskTypeInput {
+	friendlyName: String!
+	handle: String!
+	displayOrder: Int
+	clientMutationId: String
+}
+
+type createTrackerTaskTypePayload {
+	trackerTaskType: TrackerTaskType
+	clientMutationId: String
+}
+
+input createWitcherProjectInput {
+	name: String!
+	client: String
+	isBillable: Boolean!
+	projectType: String
+	description: String
+	confluenceLink: String
+	witcherProjectTrackerTaskTypes: [String]
+	slug: String!
+	estimationType: String
+	externalTrackerLink: String
+	clientMutationId: String
+}
+
+type createWitcherProjectPayload {
+	witcherProject: WitcherProject
+	clientMutationId: String
+}
+
+"""
+TODO: Modify serialization groups for related entities in WITCHER-316
+"""
+input createWitcherUserInput {
+	userId: Int!
+	role: String!
+	gitLabUserId: Int
+	jiraAccount: String!
+	companyPosition: String
+	departments: [String]
+
+	"""
+	Supervisor to whom current user directly reports
+	"""
+	supervisor: String
+	clientMutationId: String
+}
+
+"""
+TODO: Modify serialization groups for related entities in WITCHER-316
+"""
+type createWitcherUserPayload {
+	witcherUser: WitcherUser
+	clientMutationId: String
+}
+
+input deleteActivityInput {
+	id: ID!
+	clientMutationId: String
+}
+
+type deleteActivityPayload {
+	activity: Activity
+	clientMutationId: String
+}
+
+input deleteActivityTypeInput {
+	id: ID!
+	clientMutationId: String
+}
+
+type deleteActivityTypePayload {
+	activityType: ActivityType
+	clientMutationId: String
+}
+
+input deleteBusinessBranchInput {
+	id: ID!
+	clientMutationId: String
+}
+
+type deleteBusinessBranchPayload {
+	businessBranch: BusinessBranch
+	clientMutationId: String
+}
+
+input deleteChangelogInput {
+	id: ID!
+	clientMutationId: String
+}
+
+type deleteChangelogPayload {
+	changelog: Changelog
+	clientMutationId: String
+}
+
+input deleteClientInput {
+	id: ID!
+	clientMutationId: String
+}
+
+type deleteClientPayload {
+	client: Client
+	clientMutationId: String
+}
+
+input deleteCommentInput {
+	id: ID!
+	clientMutationId: String
+}
+
+type deleteCommentPayload {
+	comment: Comment
+	clientMutationId: String
+}
+
+input deleteCompanyPositionInput {
+	id: ID!
+	clientMutationId: String
+}
+
+type deleteCompanyPositionPayload {
+	companyPosition: CompanyPosition
+	clientMutationId: String
+}
+
+input deleteCountryInput {
+	id: ID!
+	clientMutationId: String
+}
+
+type deleteCountryPayload {
+	country: Country
+	clientMutationId: String
+}
+
+"""
+TODO: moneyphp/money bundle should be used instead. Will be changed in related tickets
+"""
+input deleteCurrencyInput {
+	id: ID!
+	clientMutationId: String
+}
+
+"""
+TODO: moneyphp/money bundle should be used instead. Will be changed in related tickets
+"""
+type deleteCurrencyPayload {
+	currency: Currency
+	clientMutationId: String
+}
+
+input deleteDepartmentInput {
+	id: ID!
+	clientMutationId: String
+}
+
+type deleteDepartmentPayload {
+	department: Department
+	clientMutationId: String
+}
+
+input deleteGitEventInput {
+	id: ID!
+	clientMutationId: String
+}
+
+type deleteGitEventPayload {
+	gitEvent: GitEvent
+	clientMutationId: String
+}
+
+input deleteGitProjectInput {
+	id: ID!
+	clientMutationId: String
+}
+
+type deleteGitProjectPayload {
+	gitProject: GitProject
+	clientMutationId: String
+}
+
+input deleteHistoryInput {
+	id: ID!
+	clientMutationId: String
+}
+
+type deleteHistoryPayload {
+	history: History
+	clientMutationId: String
+}
+
+input deleteIndustryInput {
+	id: ID!
+	clientMutationId: String
+}
+
+type deleteIndustryPayload {
+	industry: Industry
+	clientMutationId: String
+}
+
+input deleteLabelInput {
+	id: ID!
+	clientMutationId: String
+}
+
+type deleteLabelPayload {
+	label: Label
+	clientMutationId: String
+}
+
+input deletePriorityInput {
+	id: ID!
+	clientMutationId: String
+}
+
+type deletePriorityPayload {
+	priority: Priority
+	clientMutationId: String
+}
+
+input deleteProjectTypeInput {
+	id: ID!
+	clientMutationId: String
+}
+
+type deleteProjectTypePayload {
+	projectType: ProjectType
+	clientMutationId: String
+}
+
+input deleteStatusInput {
+	id: ID!
+	clientMutationId: String
+}
+
+type deleteStatusPayload {
+	status: Status
+	clientMutationId: String
+}
+
+input deleteTaskInput {
+	id: ID!
+	clientMutationId: String
+}
+
+type deleteTaskPayload {
+	task: Task
+	clientMutationId: String
+}
+
+input deleteTeamInput {
+	id: ID!
+	clientMutationId: String
+}
+
+type deleteTeamPayload {
+	team: Team
+	clientMutationId: String
+}
+
+input deleteTechnologyInput {
+	id: ID!
+	clientMutationId: String
+}
+
+type deleteTechnologyPayload {
+	technology: Technology
+	clientMutationId: String
+}
+
+input deleteTrackerTaskTypeInput {
+	id: ID!
+	clientMutationId: String
+}
+
+type deleteTrackerTaskTypePayload {
+	trackerTaskType: TrackerTaskType
+	clientMutationId: String
+}
+
+input deleteWitcherProjectInput {
+	id: ID!
+	clientMutationId: String
+}
+
+type deleteWitcherProjectPayload {
+	witcherProject: WitcherProject
+	clientMutationId: String
+}
+
+input deleteWitcherProjectTrackerTaskTypeInput {
+	id: ID!
+	clientMutationId: String
+}
+
+type deleteWitcherProjectTrackerTaskTypePayload {
+	witcherProjectTrackerTaskType: WitcherProjectTrackerTaskType
+	clientMutationId: String
+}
+
+"""
+TODO: Modify serialization groups for related entities in WITCHER-316
+"""
+input deleteWitcherUserInput {
+	id: ID!
+	clientMutationId: String
+}
+
+"""
+TODO: Modify serialization groups for related entities in WITCHER-316
+"""
+type deleteWitcherUserPayload {
+	witcherUser: WitcherUser
+	clientMutationId: String
+}
+
+input getCommentInput {
+	id: ID!
+	task: String!
+	comment: String!
+	clientMutationId: String
+}
+
+type getCommentPayload {
+	comment: Comment
+	clientMutationId: String
+}
+
+input updateActivityInput {
+	id: ID!
+	estimationTime: Int
+	estimationSp: Int
+	comment: String
+	activityType: String
+	activityAt: String
+	technology: String
+	source: String
+	clientMutationId: String
+}
+
+type updateActivityPayload {
+	activity: Activity
+	clientMutationId: String
+}
+
+input updateActivityTypeInput {
+	id: ID!
+	friendlyName: String
+	handle: String
+	displayOrder: Int
+	clientMutationId: String
+}
+
+type updateActivityTypePayload {
+	activityType: ActivityType
+	clientMutationId: String
+}
+
+input updateBusinessBranchInput {
+	id: ID!
+	friendlyName: String
+	handle: String
+	displayOrder: Int
+	clientMutationId: String
+}
+
+type updateBusinessBranchPayload {
+	businessBranch: BusinessBranch
+	clientMutationId: String
+}
+
+input updateChangelogInput {
+	id: ID!
+	_id: String
+	field: String
+	from: String
+	to: String
+	clientMutationId: String
+}
+
+type updateChangelogPayload {
+	changelog: Changelog
+	clientMutationId: String
+}
+
+input updateClientInput {
+	id: ID!
+	name: String
+	country: String
+	industry: String
+	currency: String
+	clientMutationId: String
+}
+
+type updateClientPayload {
+	client: Client
+	clientMutationId: String
+}
+
+input updateCommentInput {
+	id: ID!
+	comment: String
+	clientMutationId: String
+}
+
+type updateCommentPayload {
+	comment: Comment
+	clientMutationId: String
+}
+
+input updateCompanyPositionInput {
+	id: ID!
+	name: String
+	handle: String
+	clientMutationId: String
+}
+
+type updateCompanyPositionPayload {
+	companyPosition: CompanyPosition
+	clientMutationId: String
+}
+
+input updateCountryInput {
+	id: ID!
+	client: String
+	friendlyName: String
+	handle: String
+	displayOrder: Int
+	createdAt: String
+	updatedAt: String
+	deletedAt: String
+	clientMutationId: String
+}
+
+type updateCountryPayload {
+	country: Country
+	clientMutationId: String
+}
+
+"""
+TODO: moneyphp/money bundle should be used instead. Will be changed in related tickets
+"""
+input updateCurrencyInput {
+	id: ID!
+	client: String
+	friendlyName: String
+	handle: String
+	displayOrder: Int
+	createdAt: String
+	updatedAt: String
+	deletedAt: String
+	clientMutationId: String
+}
+
+"""
+TODO: moneyphp/money bundle should be used instead. Will be changed in related tickets
+"""
+type updateCurrencyPayload {
+	currency: Currency
+	clientMutationId: String
+}
+
+input updateDepartmentInput {
+	id: ID!
+	name: String
+	handle: String
+	clientMutationId: String
+}
+
+type updateDepartmentPayload {
+	department: Department
+	clientMutationId: String
+}
+
+input updateGitEventInput {
+	id: ID!
+	_id: Int
+	action: String
+	title: String
+	targetType: String
+	author: String
+	createdAt: String
+	content: String
+	projectId: Int
+	clientMutationId: String
+}
+
+type updateGitEventPayload {
+	gitEvent: GitEvent
+	clientMutationId: String
+}
+
+input updateGitProjectInput {
+	id: ID!
+	witcherProject: String
+	gitLabLink: String
+	gitLabProjectId: String
+	clientMutationId: String
+}
+
+type updateGitProjectPayload {
+	gitProject: GitProject
+	clientMutationId: String
+}
+
+input updateHistoryInput {
+	id: ID!
+	_id: String
+	taskId: Int
+	slug: String
+	trackerEventId: Int
+	internalEventId: Int
+	createdAt: String
+	creatorId: Int
+	changelog: [updateChangelogInput!]
+	entityType: String
+	clientMutationId: String
+}
+
+type updateHistoryPayload {
+	history: History
+	clientMutationId: String
+}
+
+input updateIndustryInput {
+	id: ID!
+	client: String
+	friendlyName: String
+	handle: String
+	displayOrder: Int
+	createdAt: String
+	updatedAt: String
+	deletedAt: String
+	clientMutationId: String
+}
+
+type updateIndustryPayload {
+	industry: Industry
+	clientMutationId: String
+}
+
+input updateLabelInput {
+	id: ID!
+	name: String
+	clientMutationId: String
+}
+
+type updateLabelPayload {
+	label: Label
+	clientMutationId: String
+}
+
+input updatePriorityInput {
+	id: ID!
+	description: String
+	statusColor: String
+	friendlyName: String
+	handle: String
+	displayOrder: Int
+	clientMutationId: String
+}
+
+type updatePriorityPayload {
+	priority: Priority
+	clientMutationId: String
+}
+
+input updateProjectTypeInput {
+	id: ID!
+	businessBranch: String
+	friendlyName: String
+	handle: String
+	displayOrder: Int
+	clientMutationId: String
+}
+
+type updateProjectTypePayload {
+	projectType: ProjectType
+	clientMutationId: String
+}
+
+input updateRoleInput {
+	id: ID!
+	name: String
+	description: String
+	permissions: [String]
+	clientMutationId: String
+}
+
+type updateRolePayload {
+	role: Role
+	clientMutationId: String
+}
+
+input updateSprintInput {
+	id: ID!
+	name: String
+	startedAt: String
+	endedAt: String
+	completedAt: String
+	description: String
+	closed: Boolean
+	clientMutationId: String
+}
+
+type updateSprintPayload {
+	sprint: Sprint
+	clientMutationId: String
+}
+
+input updateStatusInput {
+	id: ID!
+	description: String
+	friendlyName: String
+	handle: String
+	displayOrder: Int
+	createdAt: String
+	updatedAt: String
+	deletedAt: String
+	clientMutationId: String
+}
+
+type updateStatusPayload {
+	status: Status
+	clientMutationId: String
+}
+
+input updateTaskInput {
+	id: ID!
+	witcherProject: String
+	assignee: String
+	reporter: String
+	status: String
+	priority: String
+	externalTrackerLink: String
+	description: String
+	labels: [String]
+	trackerTaskType: String
+	summary: String
+	estimationTime: Int
+	estimationSp: Int
+	dueAt: String
+	sprints: [String]
+	clientMutationId: String
+}
+
+type updateTaskPayload {
+	task: Task
+	clientMutationId: String
+}
+
+input updateTeamInput {
+	id: ID!
+	name: String
+	witcherProject: String
+	teamMembers: [String]
+	teamLeader: String
+	clientMutationId: String
+}
+
+type updateTeamPayload {
+	team: Team
+	clientMutationId: String
+}
+
+input updateTechnologyInput {
+	id: ID!
+	name: String
+	clientMutationId: String
+}
+
+type updateTechnologyPayload {
+	technology: Technology
+	clientMutationId: String
+}
+
+input updateTrackerTaskTypeInput {
+	id: ID!
+	friendlyName: String
+	handle: String
+	displayOrder: Int
+	clientMutationId: String
+}
+
+type updateTrackerTaskTypePayload {
+	trackerTaskType: TrackerTaskType
+	clientMutationId: String
+}
+
+input updateWitcherProjectInput {
+	id: ID!
+	name: String
+	client: String
+	isBillable: Boolean
+	projectType: String
+	description: String
+	confluenceLink: String
+	witcherProjectTrackerTaskTypes: [String]
+	slug: String
+	estimationType: String
+	externalTrackerLink: String
+	clientMutationId: String
+}
+
+type updateWitcherProjectPayload {
+	witcherProject: WitcherProject
+	clientMutationId: String
+}
+
+input updateWitcherProjectTrackerTaskTypeInput {
+	id: ID!
+	isSubTaskLevel: Boolean
+	witcherProject: String
+	trackerTaskType: String
+	displayOrder: Int
+	clientMutationId: String
+}
+
+type updateWitcherProjectTrackerTaskTypePayload {
+	witcherProjectTrackerTaskType: WitcherProjectTrackerTaskType
+	clientMutationId: String
+}
+
+"""
+TODO: Modify serialization groups for related entities in WITCHER-316
+"""
+input updateWitcherUserInput {
+	id: ID!
+	userId: Int
+	role: String
+	gitLabUserId: Int
+	jiraAccount: String
+	companyPosition: String
+	departments: [String]
+
+	"""
+	Supervisor to whom current user directly reports
+	"""
+	supervisor: String
+	clientMutationId: String
+}
+
+"""
+TODO: Modify serialization groups for related entities in WITCHER-316
+"""
+type updateWitcherUserPayload {
+	witcherUser: WitcherUser
+	clientMutationId: String
+}

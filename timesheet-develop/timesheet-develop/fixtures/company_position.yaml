@@ -1,0 +1,30 @@
+Jagaad\WitcherApi\Entity\CompanyPosition:
+  company_position_1:
+    name: 'CEO'
+    handle: 'CEO'
+    createdAt: <(new \DateTime('2021-10-03'))>
+
+  company_position_2:
+    name: 'CTO'
+    handle: 'CTO'
+    createdAt: <(new \DateTime('2021-10-03'))>
+
+  company_position_3:
+    name: 'CMO'
+    handle: 'CMO'
+    createdAt: <(new \DateTime('2021-10-03'))>
+
+  company_position_4:
+    name: 'CFO'
+    handle: 'CFO'
+    createdAt: <(new \DateTime('2021-10-03'))>
+
+  company_position_5:
+    name: 'Head of Engineering'
+    handle: 'HEAD_OF_ENGINEERING'
+    createdAt: <(new \DateTime('2021-10-03'))>
+
+  company_position_6:
+    name: 'Lead Engineer'
+    handle: 'LEAD_ENGINEER'
+    createdAt: <(new \DateTime('2021-10-03'))>

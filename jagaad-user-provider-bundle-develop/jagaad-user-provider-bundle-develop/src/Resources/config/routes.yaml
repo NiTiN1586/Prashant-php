@@ -1,0 +1,15 @@
+jagaad.user_provider.authentication.callback:
+  path: _user-provider/authentication/callback
+  controller: Jagaad\UserProviderBundle\Controller\UserProviderAuthenticationController::callback
+
+jagaad.user_provider.authentication.logout:
+  path: _user-provider/authentication/logout
+  controller: Jagaad\UserProviderBundle\Controller\UserProviderAuthenticationController::logout
+
+jagaad.user_provider.authentication.google.auth-url:
+  path: _user-provider/authentication/google/auth-url
+  controller: Jagaad\UserProviderBundle\Controller\UserProviderAuthenticationController::googleAuthenticationUrl
+
+jagaad.user_provider.authentication.last_authentication_result:
+  path: _user-provider/authentication/last-result
+  controller: Jagaad\UserProviderBundle\Controller\UserProviderAuthenticationController::lastAuthenticationResult

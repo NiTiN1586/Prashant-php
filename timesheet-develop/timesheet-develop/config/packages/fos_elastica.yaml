@@ -1,0 +1,41 @@
+# Read the documentation: https://github.com/FriendsOfSymfony/FOSElasticaBundle/blob/master/doc/setup.md
+fos_elastica:
+    clients:
+        default: { url: '%env(ELASTICSEARCH_URL)%' }
+    indexes:
+        history:
+            persistence:
+                identifier: id
+                model: Jagaad\WitcherApi\ApiResource\History
+                provider:
+                    service: '@Jagaad\WitcherApi\ElasticSearch\Integration\IssueTracker\Jira\IssueChangelogDataProvider'
+                listener:
+                    enabled: false
+            properties:
+                id: { type: keyword }
+                taskId: { type: integer }
+                slug: { type: keyword }
+
+                trackerEventId:
+                    type: integer
+                    null_value: 1
+
+                internalEventId:
+                    type: integer
+                    null_value: 1
+
+                createdAt: { type: date, format: "YYYY-MM-DD'T'HH:mm:ss" }
+                creatorId: { type: integer }
+                entityType: { type: keyword }
+                changelog:
+                    type: nested
+                    properties:
+                        id: { type: keyword }
+                        field: { type: keyword }
+                        from:
+                            type: keyword
+                            null_value: 1
+                        to:
+                            type: keyword
+                            null_value: 1
+

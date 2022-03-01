@@ -1,0 +1,37 @@
+query ProjectTasks($id: ID!, $first: Int!, $after: String!) {
+	witcherProject(id: $id) {
+		id
+		tasks(first: $first, after: $after) {
+			totalCount
+			edges {
+				node {
+					id
+					slug
+					summary
+					priority {
+						id
+					}
+					assignee {
+						id
+					}
+					reporter {
+						id
+					}
+					# TODO: Start using fragments
+					# TODO: there are some import issues at the moment using fragments
+					# TODO: Recheck if we want to fetch more sprints
+					sprints(order: { endedAt: "DESC" }, first: 3) {
+						edges {
+							node {
+								id
+								name
+								startedAt
+								endedAt
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+}

@@ -1,0 +1,20 @@
+Jagaad\WitcherApi\Entity\Department:
+  department_1:
+    name: 'Development'
+    handle: 'DEVELOPMENT'
+    createdAt: <(new \DateTime('2021-11-24'))>
+
+  department_2:
+    name: 'HR'
+    handle: 'HR'
+    createdAt: <(new \DateTime('2021-11-24'))>
+
+  department_3:
+    name: 'Marketing'
+    handle: 'MARKETING'
+    createdAt: <(new \DateTime('2021-11-24'))>
+
+  department_4:
+    name: 'Sale'
+    handle: 'SALE'
+    createdAt: <(new \DateTime('2021-11-24'))>

@@ -1,0 +1,5 @@
+/be/*  http://ec2-52-210-200-87.eu-west-1.compute.amazonaws.com/:splat  200
+
+# History pushstate and single-page apps
+# https://docs.netlify.com/routing/redirects/rewrites-proxies/#history-pushstate-and-single-page-apps
+/*    /index.html   200

@@ -1,0 +1,14 @@
+<?php
+
+declare(strict_types=1);
+
+namespace Jagaad\WitcherApi\Integration\Migration;
+
+use Jagaad\WitcherApi\Entity\WitcherProject;
+use Jagaad\WitcherApi\Integration\Application\IssueTracker\Jira\DTO\ProjectMigrationStepStorage;
+use Jagaad\WitcherApi\Integration\Domain\IssueTracker\Project as ProjectRestResponse;
+
+interface ProjectMigrationFlowHandlerInterface
+{
+    public function process(ProjectMigrationStepStorage $migrationStepStorage, WitcherProject $witcherProject, ProjectRestResponse $response): void;
+}

@@ -1,0 +1,7 @@
+{
+  "//1": "This file configuration is only for WebStorm at the moment",
+  "//2": "https://v4.apollo.vuejs.org/guide/installation.html#webstorm",
+  "name": "Witcher GraphQL Schema",
+  "schemaPath": "./schema.graphql",
+  "includes": ["./src/**/*.graphql"]
+}

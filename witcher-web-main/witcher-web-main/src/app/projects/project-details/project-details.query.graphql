@@ -1,0 +1,21 @@
+query ProjectDetails($id: ID!) {
+	witcherProject(id: $id) {
+		id
+		name
+		projectType {
+			businessBranch {
+				friendlyName
+			}
+		}
+		description
+		tasks(first: 0) {
+			totalCount
+		}
+		externalTrackerLink
+		confluenceLink
+		createdBy {
+			id
+			userId
+		}
+	}
+}

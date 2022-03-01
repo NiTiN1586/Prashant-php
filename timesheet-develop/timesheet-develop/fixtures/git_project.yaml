@@ -1,0 +1,19 @@
+Jagaad\WitcherApi\Entity\GitProject:
+  git_project_1:
+    witcherProject: '@witcher_project_1'
+    gitLabLink: 'http://git_project_1'
+    gitLabProjectId: '123'
+    gitBranches: ['@git_branch_1']
+    createdBy: '@witcher_user_1'
+    createdAt: <(new \DateTime('2021-10-09'))>
+    updatedAt: <(new \DateTime('2021-11-10'))>
+
+  git_project_2:
+    witcherProject: '@witcher_project_2'
+    gitLabLink: 'http://git_project_2'
+    gitLabProjectId: '321'
+    gitBranches: ['@git_branch_2']
+    createdBy: '@witcher_user_2'
+    createdAt: <(new \DateTime('2021-10-09'))>
+    updatedAt: <(new \DateTime('2021-11-10'))>
+    deletedAt: <(new \DateTime('2021-12-09'))>

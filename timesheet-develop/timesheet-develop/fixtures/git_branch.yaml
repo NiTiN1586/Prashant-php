@@ -1,0 +1,19 @@
+Jagaad\WitcherApi\Entity\GitBranch:
+  git_branch_1:
+    branchName: 'branch-1'
+    webUrl: 'http://branch_1'
+    isMerged: false
+    project: '@git_project_1'
+    task: '@task_1'
+    createdAt: <(new \DateTime('2021-10-09'))>
+    updatedAt: <(new \DateTime('2021-11-10'))>
+
+  git_branch_2:
+    branchName: 'branch-2'
+    webUrl: 'http://branch_2'
+    isMerged: false
+    project: '@git_project_2'
+    task: '@task_2'
+    createdAt: <(new \DateTime('2021-10-09'))>
+    updatedAt: <(new \DateTime('2021-11-10'))>
+    deletedAt: <(new \DateTime('2021-12-09'))>

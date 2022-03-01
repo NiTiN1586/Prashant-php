@@ -1,0 +1,9 @@
+doctrine:
+    dbal:
+        # "TEST_TOKEN" is typically set by ParaTest
+        driver: pdo_mysql
+        host: "%env(TEST_DATABASE_HOST)%"
+        port: "%env(TEST_DATABASE_PORT)%"
+        dbname: "%env(TEST_DATABASE_NAME)%"
+        user: "%env(TEST_DATABASE_USER)%"
+        password: "%env(TEST_DATABASE_PASSWORD)%"

@@ -1,0 +1,14 @@
+parameters:
+    level: 6
+    paths:
+        - src
+    checkMissingIterableValueType: true
+    checkGenericClassInNonGenericObjectType: true
+    symfony:
+        container_xml_path: var/cache/dev/Jagaad_WitcherApi_KernelDevDebugContainer.xml
+    ignoreErrors:
+        -
+          message: '#Property [a-zA-Z0-9\\_]+::\$\w+ is never written, only read.#'
+          path: src/Entity/*
+
+

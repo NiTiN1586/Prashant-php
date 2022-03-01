@@ -1,0 +1,17 @@
+#!/bin/bash
+
+if [[ ! -x "bin/analyse.sh" ]]; then
+  exit 0
+fi
+
+if ! bin/analyse.sh -a; then
+  echo "Some files did not pass the CS check, please run:"
+  echo
+  echo " bin/analyse.sh -a"
+  echo
+  echo "Then re-add and commit the modified files."
+
+  exit 1
+fi
+
+exit $?

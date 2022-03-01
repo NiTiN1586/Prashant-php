@@ -1,0 +1,32 @@
+query WeeklyTasks($perPage: Int, $after: String!) {
+	tasks(
+		first: $perPage
+		after: $after
+		status_handle_list: ["TO_DO", "IN_PROGRESS"]
+	) {
+		edges {
+			node {
+				id
+				slug
+				summary
+				witcherProject {
+					id
+					slug
+				}
+				# TODO: Start using fragments
+				# TODO: there are some import issues at the moment using fragments
+				# TODO: Recheck if we want to fetch more sprints
+				sprints(order: { endedAt: "DESC" }, first: 3) {
+					edges {
+						node {
+							id
+							name
+							startedAt
+							endedAt
+						}
+					}
+				}
+			}
+		}
+	}
+}

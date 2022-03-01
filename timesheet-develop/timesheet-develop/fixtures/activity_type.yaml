@@ -1,0 +1,25 @@
+Jagaad\WitcherApi\Entity\ActivityType:
+    activity_type_1:
+        friendlyName: 'Development'
+        handle: 'DEVELOPMENT'
+        createdAt: <(new \DateTime('2022-01-20'))>
+    activity_type_2:
+        friendlyName: 'Debug'
+        handle: 'DEBUG'
+        createdAt: <(new \DateTime('2022-01-20'))>
+    activity_type_3:
+        friendlyName: 'Code Review'
+        handle: 'CODE_REVIEW'
+        createdAt: <(new \DateTime('2022-01-20'))>
+    activity_type_4:
+        friendlyName: 'Pair Programming'
+        handle: 'PAIR_PROGRAMMING'
+        createdAt: <(new \DateTime('2022-01-20'))>
+    activity_type_5:
+        friendlyName: 'Meeting'
+        handle: 'MEETING'
+        createdAt: <(new \DateTime('2022-01-20'))>
+    activity_type_6:
+        friendlyName: 'UI/UX Design'
+        handle: 'DESIGN'
+        createdAt: <(new \DateTime('2022-01-20'))>

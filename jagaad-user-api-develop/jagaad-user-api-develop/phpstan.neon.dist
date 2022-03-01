@@ -1,0 +1,15 @@
+parameters:
+    level: max
+    paths:
+        - src
+        - tests
+
+    checkMissingIterableValueType: true
+    checkGenericClassInNonGenericObjectType: true
+    excludePaths:
+        analyseAndScan:
+            - tests/bootstrap.php
+    symfony:
+        container_xml_path: var/cache/dev/Jagaad_UserApi_KernelDevDebugContainer.xml
+    ignoreErrors:
+    		- '#Strict comparison using === between 1|2|3 and 0 will always evaluate to false.#'

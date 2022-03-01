@@ -1,0 +1,39 @@
+Jagaad\WitcherApi\Entity\WitcherProjectTrackerTaskType:
+    witcher_project_tracker_task_type_1:
+        isSubTaskLevel: false
+        witcherProject: '@witcher_project_1'
+        trackerTaskType: '@tracker_task_type_1'
+        createdAt: <(new \DateTime('2021-10-03'))>
+        createdBy: '@witcher_user_1'
+        displayOrder: 1
+    witcher_project_tracker_task_type_2:
+        isSubTaskLevel: false
+        witcherProject: '@witcher_project_2'
+        trackerTaskType: '@tracker_task_type_2'
+        createdAt: <(new \DateTime('2021-10-03'))>
+        createdBy: '@witcher_user_1'
+        displayOrder: 2
+    witcher_project_tracker_task_type_3:
+        isSubTaskLevel: false
+        witcherProject: '@witcher_project_3'
+        trackerTaskType: '@tracker_task_type_3'
+        createdAt: <(new \DateTime('2021-10-03'))>
+        createdBy: '@witcher_user_2'
+        displayOrder: 3
+        deletedAt: <(new \DateTime('2021-11-18'))>
+    witcher_project_tracker_task_type_4:
+        isSubTaskLevel: false
+        witcherProject: '@witcher_project_4'
+        trackerTaskType: '@tracker_task_type_4'
+        createdAt: <(new \DateTime('2021-10-03'))>
+        createdBy: '@witcher_user_3'
+        displayOrder: 3
+        deletedAt: <(new \DateTime('2021-11-18'))>
+    witcher_project_tracker_task_type_5:
+        isSubTaskLevel: false
+        witcherProject: '@witcher_project_5'
+        trackerTaskType: '@tracker_task_type_4'
+        createdAt: <(new \DateTime('2021-10-03'))>
+        createdBy: '@witcher_user_4'
+        displayOrder: 4
+        deletedAt: <(new \DateTime('2021-11-18'))>

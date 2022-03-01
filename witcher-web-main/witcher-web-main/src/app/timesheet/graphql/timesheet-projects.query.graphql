@@ -1,0 +1,25 @@
+query TimesheetProjects($perPage: Int, $after: String!) {
+	witcherProjects(first: $perPage, after: $after) {
+		totalCount
+		edges {
+			node {
+				id
+				name
+				slug
+				tasks {
+					totalCount
+				}
+			}
+		}
+	}
+
+	activityTypes {
+		edges {
+			node {
+				id
+				friendlyName
+				handle
+			}
+		}
+	}
+}

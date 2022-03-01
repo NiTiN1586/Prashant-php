@@ -1,0 +1,35 @@
+security:
+    providers:
+        api_token_provider:
+            entity:
+                class: Jagaad\UserApi\Entity\ApiToken
+                property: token
+
+    firewalls:
+        dev:
+            pattern: ^/(_(profiler|wdt)|css|images|js)/
+            security: false
+        main:
+            anonymous: true
+            lazy: true
+            stateless: true
+            logout: ~
+
+            guard:
+                authenticators:
+                    - Jagaad\UserApi\Security\Authentication\ApiTokenAuthenticator
+
+            # activate different ways to authenticate
+            # https://symfony.com/doc/current/security.html#firewalls-authentication
+
+            # https://symfony.com/doc/current/security/impersonating_user.html
+            # switch_user: true
+
+    # Easy way to control access for large sections of your site
+    # Note: Only the *first* access control that matches will be used
+    access_control:
+        - { path: ^/_wdt, role: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/_profiler, role: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/api/auth, role: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/api$, roles: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/api, roles: IS_AUTHENTICATED_FULLY }

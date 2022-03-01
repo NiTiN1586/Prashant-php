@@ -1,0 +1,23 @@
+Jagaad\WitcherApi\Entity\Priority:
+    priority_1:
+        description: 'priority1 desc'
+        friendlyName: 'priority1'
+        handle: 'priority1-handle'
+        statusColor: '#ffffff'
+        createdAt: <(new \DateTime('2021-10-03'))>
+        displayOrder: 1
+    priority_2:
+        description: 'priority2 desc'
+        friendlyName: 'priority2'
+        handle: 'priority2-handle'
+        statusColor: '#ffffff'
+        createdAt: <(new \DateTime('2021-10-03'))>
+        displayOrder: 2
+    priority_3:
+        description: 'priority3 desc'
+        friendlyName: 'priority3'
+        handle: 'priority3-handle'
+        statusColor: '#ffffff'
+        createdAt: <(new \DateTime('2021-10-03'))>
+        displayOrder: 3
+        deletedAt: <(new \DateTime('2021-11-18'))>

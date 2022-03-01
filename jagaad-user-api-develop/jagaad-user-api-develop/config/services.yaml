@@ -1,0 +1,41 @@
+parameters:
+
+services:
+    _defaults:
+        autowire: true
+        autoconfigure: true
+
+    Jagaad\UserApi\:
+        resource: '../src/'
+        exclude:
+            - '../src/DependencyInjection/'
+            - '../src/Entity/'
+            - '../src/Kernel.php'
+            - '../src/Tests/'
+
+    Jagaad\UserApi\Controller\:
+        resource: '../src/Controller/'
+        tags: ['controller.service_arguments']
+
+    Jagaad\UserApi\Security\Authentication\Provider\GoogleClientProvider:
+        arguments:
+            $googleClient: '@Google_Client'
+
+    Jagaad\UserApi\Swagger\Decorator\SwaggerDecorator:
+        decorates: 'api_platform.swagger.normalizer.documentation'
+        arguments: [ '@Jagaad\UserApi\Swagger\Decorator\SwaggerDecorator.inner' ]
+        autoconfigure: false
+
+    slack_handler_user_api_exceptions:
+        class: Monolog\Handler\SlackWebhookHandler
+        arguments:
+            $webhookUrl: '%env(SLACK_USER_API_EXCEPTIONS_WEBHOOK_URL)%'
+            $includeContextAndExtra: true
+
+    Jagaad\UserApi\Listener\JagaadUserApiExceptionSlackListener:
+        arguments:
+            $slackWebhookHandler: '@slack_handler_user_api_exceptions'
+            $slackNotification: '%env(bool:SLACK_NOTIFICATION_ENABLE)%'
+            $slackChannel: '%env(SLACK_NOTIFICATION_CHANNEL)%'
+        tags:
+            - { name: 'kernel.event_listener', event: 'kernel.exception', method: 'onKernelException' }

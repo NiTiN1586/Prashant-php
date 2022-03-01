@@ -1,0 +1,55 @@
+version: '3.6'
+
+services:
+  php:
+    container_name: jagaad-user-api-php
+    build: ./docker/dev/php-fpm
+    volumes:
+      - '.:/data/app'
+      - './docker/dev/php-fpm/php.ini:/usr/local/etc/php/php.ini'
+    depends_on:
+      - mysql
+    ports:
+      - '9000:9000'
+    expose:
+      - '9000'
+    networks:
+      user_api_internal:
+        aliases:
+          - user_api_internal
+  web:
+    container_name: jagaad-user-api-web
+    image: 'nginx:latest'
+    ports:
+      - '8888:8888'
+    volumes:
+      - '.:/data/app'
+      - './docker/dev/nginx/jagaad-user-api.conf:/etc/nginx/conf.d/default.conf'
+    depends_on:
+      - php
+    env_file:
+      - .env.local
+    networks:
+      user_api_internal:
+        aliases:
+          - user_api_internal
+  mysql:
+    container_name: jagaad-user-api-mysql
+    image: 'mysql:8'
+    command: '--sql_mode=""'
+    env_file:
+      - .env.local
+    ports:
+      - '33060:3306'
+    volumes:
+      - 'mysql:/var/lib/mysql'
+    networks:
+      user_api_internal:
+        aliases:
+          - user_api_internal
+volumes:
+  mysql: null
+
+networks:
+  user_api_internal:
+    name: user_api_internal

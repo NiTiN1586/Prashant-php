@@ -1,0 +1,17 @@
+Jagaad\WitcherApi\Entity\TrackerTaskType:
+    tracker_task_type_1:
+        friendlyName: 'tracker-task-type-name1'
+        handle: 'test1-handle'
+        createdAt: <(new \DateTime('2021-10-03'))>
+    tracker_task_type_2:
+        friendlyName: 'tracker-task-type-name2'
+        handle: 'test2-handle'
+        createdAt: <(new \DateTime('2021-10-03'))>
+    tracker_task_type_3:
+        friendlyName: 'tracker-task-type-name3'
+        handle: 'test3-handle'
+        createdAt: <(new \DateTime('2021-10-03'))>
+    tracker_task_type_4:
+        friendlyName: 'tracker-task-type-name4'
+        handle: 'test4-handle'
+        createdAt: <(new \DateTime('2021-10-03'))>

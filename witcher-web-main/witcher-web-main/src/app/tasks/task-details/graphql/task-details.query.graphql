@@ -1,0 +1,71 @@
+query TaskDetails($id: ID!) {
+	task(id: $id) {
+		id
+		slug
+		summary
+		description
+		externalTrackerLink
+		createdAt
+		priority {
+			id
+			friendlyName
+			handle
+			statusColor
+		}
+		witcherProject {
+			id
+			slug
+			name
+			estimationType {
+				id
+				friendlyName
+				handle
+			}
+		}
+		activities {
+			edges {
+				node {
+					id
+					estimationTime
+					estimationSp
+					activityAt
+					activityType {
+						id
+						friendlyName
+					}
+				}
+			}
+		}
+		labels {
+			edges {
+				node {
+					id
+					name
+				}
+			}
+		}
+		# TODO: Start using fragments
+		# TODO: there are some import issues at the moment using fragments
+		# TODO: Recheck if we want to fetch more sprints
+		sprints(order: { endedAt: "DESC" }, first: 3) {
+			edges {
+				node {
+					id
+					name
+					startedAt
+					endedAt
+				}
+			}
+		}
+	}
+
+	activityTypes {
+		edges {
+			node {
+				id
+				friendlyName
+				handle
+			}
+		}
+	}
+}

@@ -1,0 +1,13 @@
+mutation ActivityUpdate($input: updateActivityInput!) {
+	updateActivity(input: $input) {
+		activity {
+			id
+			estimationTime
+			estimationSp
+			activityType {
+				id
+				friendlyName
+			}
+		}
+	}
+}

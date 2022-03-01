@@ -1,0 +1,33 @@
+query TaskList($perPage: Int, $after: String!) {
+	tasks(first: $perPage, after: $after) {
+		totalCount
+		edges {
+			node {
+				id
+				summary
+				description
+				slug
+				status {
+					id
+				}
+				witcherProject {
+					id
+					name
+				}
+				# TODO: Start using fragments
+				# TODO: there are some import issues at the moment using fragments
+				# TODO: Recheck if we want to fetch more sprints
+				sprints(order: { endedAt: "DESC" }, first: 3) {
+					edges {
+						node {
+							id
+							name
+							startedAt
+							endedAt
+						}
+					}
+				}
+			}
+		}
+	}
+}

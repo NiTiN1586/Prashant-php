@@ -1,0 +1,20 @@
+Jagaad\WitcherApi\Entity\Status:
+    status_1:
+        description: 'test1 active status'
+        friendlyName: 'Active'
+        handle: 'test1-handle'
+        createdAt: <(new \DateTime('2021-10-03'))>
+        displayOrder: 1
+    status_2:
+        description: 'test2 todo status'
+        friendlyName: 'Todo'
+        handle: 'test2-handle'
+        createdAt: <(new \DateTime('2021-10-03'))>
+        displayOrder: 2
+    status_3:
+        description: 'test3 inprogress status'
+        friendlyName: 'inprogress'
+        handle: 'test3-handle'
+        createdAt: <(new \DateTime('2021-10-03'))>
+        displayOrder: 3
+        deletedAt: <(new \DateTime('2021-11-18'))>

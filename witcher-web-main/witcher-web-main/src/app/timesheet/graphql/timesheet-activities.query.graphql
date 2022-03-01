@@ -1,0 +1,22 @@
+query TimesheetTaskActivities($perPage: Int!, $slug: String!) {
+	activities(task_slug: $slug, first: $perPage) {
+		edges {
+			node {
+				id
+				estimationTime
+				estimationSp
+				comment
+				activityType {
+					id
+					friendlyName
+				}
+				activityAt
+				technology {
+					id
+					name
+				}
+				source
+			}
+		}
+	}
+}

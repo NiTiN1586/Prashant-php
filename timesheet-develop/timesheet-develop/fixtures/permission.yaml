@@ -1,0 +1,128 @@
+Jagaad\WitcherApi\Entity\Permission:
+  permission_1:
+    handle: 'VIEW_ASSIGNED_TASKS'
+    name: 'View assigned tasks'
+    description: 'Allows to view assigned to user tasks'
+    createdAt: <(new \DateTime('2021-10-09'))>
+    updatedAt: <(new \DateTime('2021-11-10'))>
+    permissionGroup: '@permission_group_2'
+
+  permission_2:
+    handle: 'VIEW_ALL_TASKS'
+    name: 'View all tasks'
+    description: 'Allows to view all tasks'
+    createdAt: <(new \DateTime('2021-10-09'))>
+    updatedAt: <(new \DateTime('2021-11-10'))>
+    permissionGroup: '@permission_group_2'
+
+  permission_3:
+    handle: 'VIEW_ASSIGNED_PROJECTS'
+    name: 'View assigned projects'
+    description: 'Allows to view assigned to user projects'
+    createdAt: <(new \DateTime('2021-10-09'))>
+    updatedAt: <(new \DateTime('2021-11-10'))>
+    permissionGroup: '@permission_group_3'
+
+  permission_4:
+    handle: 'VIEW_ALL_PROJECTS'
+    name: 'View all projects'
+    description: 'Allows to view all projects'
+    createdAt: <(new \DateTime('2021-10-09'))>
+    updatedAt: <(new \DateTime('2021-11-10'))>
+    permissionGroup: '@permission_group_3'
+
+  permission_5:
+    handle: 'CREATE_TASKS'
+    name: 'Create tasks'
+    description: 'Allows to create  tasks'
+    createdAt: <(new \DateTime('2021-10-09'))>
+    updatedAt: <(new \DateTime('2021-11-10'))>
+    permissionGroup: '@permission_group_2'
+
+  permission_6:
+    handle: 'CREATE_PROJECTS'
+    name: 'Create projects'
+    description: 'Allows to create projects'
+    createdAt: <(new \DateTime('2021-10-09'))>
+    updatedAt: <(new \DateTime('2021-11-10'))>
+    permissionGroup: '@permission_group_3'
+
+  permission_7:
+    handle: 'UPDATE_ASSIGNED_TASKS'
+    name: 'Update assigned tasks'
+    description: 'Allows to update assigned to user tasksv'
+    createdAt: <(new \DateTime('2021-10-09'))>
+    updatedAt: <(new \DateTime('2021-11-10'))>
+    permissionGroup: '@permission_group_2'
+
+  permission_8:
+    handle: 'UPDATE_ALL_TASKS'
+    name: 'Update all tasks'
+    description: 'Allows to update all tasks'
+    createdAt: <(new \DateTime('2021-10-09'))>
+    updatedAt: <(new \DateTime('2021-11-10'))>
+    permissionGroup: '@permission_group_2'
+
+  permission_9:
+    handle: 'UPDATE_ASSIGNED_PROJECTS'
+    name: 'Update assigned projects'
+    description: 'Allows to update assigned to user projects'
+    createdAt: <(new \DateTime('2021-10-09'))>
+    updatedAt: <(new \DateTime('2021-11-10'))>
+    permissionGroup: '@permission_group_3'
+
+  permission_10:
+    handle: 'UPDATE_ALL_PROJECTS'
+    name: 'Update all projects'
+    description: 'Allows to update all projects'
+    createdAt: <(new \DateTime('2021-10-09'))>
+    updatedAt: <(new \DateTime('2021-11-10'))>
+    permissionGroup: '@permission_group_3'
+
+  permission_11:
+    handle: 'DELETE_ASSIGNED_TASKS'
+    name: 'Delete assigned tasks'
+    description: 'Allows to delete assigned tasks'
+    createdAt: <(new \DateTime('2021-10-09'))>
+    updatedAt: <(new \DateTime('2021-11-10'))>
+    permissionGroup: '@permission_group_2'
+
+  permission_12:
+    handle: 'DELETE_ALL_TASKS'
+    name: 'Delete all tasks'
+    description: 'Allows to delete all tasks'
+    createdAt: <(new \DateTime('2021-10-09'))>
+    updatedAt: <(new \DateTime('2021-11-10'))>
+    permissionGroup: '@permission_group_2'
+
+  permission_13:
+    handle: 'DELETE_ASSIGNED_PROJECTS'
+    name: 'Delete assigned projects'
+    description: 'Allows to delete assigned projects'
+    createdAt: <(new \DateTime('2021-10-09'))>
+    updatedAt: <(new \DateTime('2021-11-10'))>
+    permissionGroup: '@permission_group_3'
+
+  permission_14:
+    handle: 'DELETE_ALL_PROJECTS'
+    name: 'Delete all projects'
+    description: 'Allows to delete all projects'
+    createdAt: <(new \DateTime('2021-10-09'))>
+    updatedAt: <(new \DateTime('2021-11-10'))>
+    permissionGroup: '@permission_group_3'
+
+  permission_15:
+    handle: 'MANAGE_ROLES'
+    name: 'Manage roles'
+    description: 'Allows to view, create, edit and delete roles and permissions'
+    createdAt: <(new \DateTime('2021-10-09'))>
+    updatedAt: <(new \DateTime('2021-11-10'))>
+    permissionGroup: '@permission_group_1'
+
+  permission_16:
+    handle: 'MANAGE_ACTIVITIES'
+    name: 'Manage activities'
+    description: 'Allows to create/view/edit/delete activity'
+    createdAt: <(new \DateTime('2021-10-09'))>
+    updatedAt: <(new \DateTime('2021-11-10'))>
+    permissionGroup: '@permission_group_4'

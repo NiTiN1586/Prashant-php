@@ -1,0 +1,44 @@
+schema: './schema.graphql'
+generates:
+  ./generated/types.ts:
+    config: &fullSharedConfig
+      vueCompositionApiImportFrom: vue
+      avoidOptionals:
+        field: true
+        inputValue: false
+        object: true
+        defaultValue: true
+      immutableTypes: true
+      maybeValue: T
+      flattenGeneratedTypes: true
+      preResolveTypes: true
+      strictScalars: true
+      defaultScalarType: unknown
+      scalars:
+        DateTime: string
+        Dimension: number
+        HexColor: string
+        Quality: number
+        Iterable: Iterable<unknown>
+    plugins:
+      - add:
+          content: "/* eslint-disable */\n// noinspection JSUnusedGlobalSymbols\n"
+      - 'typescript'
+  ./:
+    documents: 'src/**/*.graphql'
+    preset: near-operation-file
+    presetConfig:
+      baseTypesPath: ./generated/types.ts
+    config: *fullSharedConfig
+    plugins:
+      - add:
+          content: "/* eslint-disable */\n// noinspection JSUnusedGlobalSymbols\n"
+      - 'typescript-operations'
+      - 'typescript-vue-apollo'
+  ./generated/possible-types.ts:
+    plugins:
+      - 'fragment-matcher'
+
+hooks:
+  afterOneFileWrite:
+    - prettier --write

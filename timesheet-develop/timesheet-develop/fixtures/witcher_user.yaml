@@ -1,0 +1,33 @@
+Jagaad\WitcherApi\Entity\WitcherUser:
+    witcher_user_1:
+        userId: 1
+        role: '@role_1'
+        gitLabUserId: 1
+        jiraAccount: 'test1-jira-account'
+        company_position: '@company_position_6'
+        createdAt: <(new \DateTime('2021-10-03'))>
+
+    witcher_user_2:
+        userId: 2
+        role: '@role_2'
+        gitLabUserId: 2
+        jiraAccount: 'test2-jira-account'
+        company_position: '@company_position_4'
+        createdAt: <(new \DateTime('2021-10-03'))>
+
+    witcher_user_3:
+        userId: 3
+        role: '@role_3'
+        gitLabUserId: 3
+        jiraAccount: 'test3-jira-account'
+        company_position: '@company_position_4'
+        createdAt: <(new \DateTime('2021-10-03'))>
+        deletedAt: <(new \DateTime('2021-11-18'))>
+
+    witcher_user_4:
+        userId: 4
+        role: '@role_3'
+        gitLabUserId: 4
+        jiraAccount: 'test4-jira-account'
+        company_position: '@company_position_6'
+        createdAt: <(new \DateTime('2021-10-03'))>

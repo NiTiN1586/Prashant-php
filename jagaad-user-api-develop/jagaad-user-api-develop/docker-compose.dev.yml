@@ -1,0 +1,17 @@
+version: '3.6'
+
+services:
+  php:
+    networks:
+      - jagaad_user_api_dev
+  web:
+    networks:
+      - jagaad_user_api_dev
+  mysql:
+    networks:
+      - jagaad_user_api_dev
+volumes:
+  mysql: null
+networks:
+  jagaad_user_api_dev:
+    name: jagaad_user_api_dev

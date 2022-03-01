@@ -1,0 +1,39 @@
+paths:
+  /_user-provider/authentication/google/auth-url:
+    get:
+      tags:
+        - Authentication
+      operationId: getGoogleAuthUrl
+      name: Get authentication url
+      summary: Get Google authentication link to authenticate the user
+      parameters:
+        - name: postLoginRedirectUrl
+          in: query
+          required: false
+          description: An optional custom post-login redirect route
+          schema:
+            type: string
+            example: http://service.jagaad/custom-page
+      produces:
+        - application\json
+      responses:
+        200:
+          description: Google authentication URL returned
+        500:
+          description: Failed generating Google authentication URL
+  /_user-provider/authentication/last-result:
+    get:
+      tags:
+        - Authentication
+      operationId: getLastAuthenticationResult
+      name: Get latest authentication attempt results
+      summary: Get details about the latest authentication attempt results
+      produces:
+        - application\json
+      responses:
+        200:
+          description: Authentication attempt details found and returned
+        404:
+          description: No authentication attempt details found
+        500:
+          description: Failed to fetch authentication attempt details

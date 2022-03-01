@@ -1,0 +1,15 @@
+mutation ActivityCreate($input: createActivityInput!) {
+	createActivity(input: $input) {
+		clientMutationId
+		activity {
+			id
+			estimationTime
+			estimationSp
+			activityType {
+				id
+				friendlyName
+				handle
+			}
+		}
+	}
+}

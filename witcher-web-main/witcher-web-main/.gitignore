@@ -1,0 +1,10 @@
+node_modules
+.DS_Store
+dist
+dist-ssr
+*.local
+.idea
+storybook-static
+build-storybook.log
+generated
+*.generated.ts

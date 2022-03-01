@@ -1,0 +1,6 @@
+jagaad_user_provider:
+  user_api:
+    host: '%env(JAGAAD_USER_API_HOST)%'
+  login_route: _profiler_home
+  post_login_redirect_route: post-login
+  client_jagaad_user_api_token: '%env(JAGAAD_USER_API_TOKEN)%'

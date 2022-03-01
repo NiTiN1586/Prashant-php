@@ -1,0 +1,2 @@
+jagaad_user_provider:
+  resource: '@JagaadUserProviderBundle/src/Resources/config/routes.yaml'

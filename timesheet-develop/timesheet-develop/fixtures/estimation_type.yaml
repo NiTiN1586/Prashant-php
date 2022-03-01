@@ -1,0 +1,12 @@
+Jagaad\WitcherApi\Entity\EstimationType:
+  estimation_type_1:
+    friendlyName: 'Story point estimate'
+    display_order: 1
+    handle: 'SP'
+    createdAt: <(new \DateTime('2021-10-03'))>
+
+  estimation_type_2:
+    friendlyName: 'Time estimate'
+    display_order: 2
+    handle: 'TIME'
+    createdAt: <(new \DateTime('2021-10-03'))>
