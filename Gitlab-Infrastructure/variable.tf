@@ -21,11 +21,11 @@ variable "public_subnet" {
 
 variable "access_key" {
   description = "access_key"
-  default     = "AKIAZYXSJRLAHVSWRE6G"
+  default     = ""
 }
 variable "secret_key" {
   description = "secret_key"
-  default     = "pQWYjqBHV/EhnCLT3B7BU3LfnJBFurtJsud/X87h"
+  default     = ""
 }
 
 variable "aws_region" {
